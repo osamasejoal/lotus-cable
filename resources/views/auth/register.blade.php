@@ -22,9 +22,6 @@
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Sign up</button>
                     <p class="sign-note">Already have an account? <a href="{{route('login')}}">Sign in</a></p>
-                    <!--<button type="button" class="close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>-->
                 </form>
             </div>
         </div>
