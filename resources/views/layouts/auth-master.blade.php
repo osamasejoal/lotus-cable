@@ -28,7 +28,7 @@
     
 
 
-    @yield('main-content')
+    @yield('auth-content')
 
 
 

@@ -1,23 +1,27 @@
-@extends('layouts.login-register')
+@extends('layouts.auth-master')
 
-@section('main-content')
+@section('auth-content')
     <div class="page-center">
         <div class="page-center-in">
             <div class="container-fluid">
-                <form class="sign-box">
+                <form class="sign-box" method="POST" action="{{route('register')}}">
+                    @csrf
                     <div class="sign-avatar no-photo">&plus;</div>
                     <header class="sign-title">Sign Up</header>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="E-Mail" />
+                        <input type="text" class="form-control" name="name" placeholder="Name" />
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" />
+                        <input type="text" class="form-control" name="email" placeholder="E-Mail" />
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Repeat password" />
+                        <input type="password" class="form-control" name="password" placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password_confirmation" placeholder="Repeat password" />
                     </div>
                     <button type="submit" class="btn btn-rounded btn-success sign-up">Sign up</button>
-                    <p class="sign-note">Already have an account? <a href="sign-in.html">Sign in</a></p>
+                    <p class="sign-note">Already have an account? <a href="{{route('login')}}">Sign in</a></p>
                     <!--<button type="button" class="close">
                             <span aria-hidden="true">&times;</span>
                         </button>-->
