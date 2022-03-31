@@ -25,15 +25,18 @@
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/main.css">
+
+    @yield('main-style-content')
 </head>
 
 <body class="with-side-menu control-panel control-panel-compact">
 
     <header class="site-header">
         <div class="container-fluid">
-            <a href="#" class="site-logo">
-                <img class="hidden-md-down" src="{{ asset('backend/assets') }}/img/logo-2.png" alt="">
-                <img class="hidden-lg-down" src="{{ asset('backend/assets') }}/img/logo-2-mob.png" alt="">
+            <a href="#" class="site-logo font-weight-bold h3 pr-2">
+                Lotus Cable
+                {{-- <img class="hidden-md-down" src="{{ asset('backend/assets') }}/img/logo-2.png" alt="">
+                <img class="hidden-lg-down" src="{{ asset('backend/assets') }}/img/logo-2-mob.png" alt=""> --}}
             </a>
 
             <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -237,13 +240,19 @@
                             </div>
                         </div>
 
+
+
+                        <!-- |||||||||||||
+                        User Profile Data
+                        |||||||||||||| -->
                         <div class="dropdown user-menu">
                             <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('backend/assets') }}/img/avatar-2-64.png" alt="">
+                                <img src="{{ asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image }}" alt="">
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-                                <a class="dropdown-item" href="#"><span class="font-icon fa fa-anchor"></span>Front
+                                <a class="dropdown-item" href="{{ route('frontpage') }}"><span
+                                        class="font-icon fa fa-anchor"></span>Front
                                     page</a>
                                 <a class="dropdown-item" href="#"><span
                                         class="font-icon glyphicon glyphicon-user"></span>Profile</a>
@@ -492,10 +501,6 @@
                                 </div>
                             </div>
                             <!--.help-dropdown-->
-                            <a class="btn btn-nav btn-rounded btn-inline btn-danger-outline"
-                                href="http://themeforest.net/item/startui-premium-bootstrap-4-admin-dashboard-template/15228250?ref=themesanytime">
-                                Buy Theme
-                            </a>
                             <div class="site-header-search-container">
                                 <form class="site-header-search closed">
                                     <input type="text" placeholder="Search" />
@@ -527,12 +532,35 @@
     ||||||||||| -->
     <div class="mobile-menu-left-overlay"></div>
     <nav class="side-menu">
+
+        <div class="mb-4">
+            <img src="{{asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image}}" alt="Profile Picture" width="40%" style="display:block;margin:auto;">
+            <span style="display:block;text-align:center;margin-top:10px;font-size:20px;color:green">
+                @if (auth()->user()->type == 1)
+                    Admin
+                @elseif (auth()->user()->type == 2)
+                    Staff
+                @endif
+            </span>
+        </div>
+
+
         <ul class="side-menu-list">
             <li class="grey">
                 <a href="{{ route('dashboard') }}">
                     <i class="font-icon font-icon-dashboard"></i>
                     <span class="lbl">Dashboard</span>
                 </a>
+            </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-users"></i>
+                    <span class="lbl">Staff</span>
+                </span>
+                <ul>
+                    <li><a href="{{route('staff.create')}}"><span class="lbl">Create Staff</span></a></li>
+                    <li><a href="{{route('staff.index')}}"><span class="lbl">Staff List</span></a></li>
+                </ul>
             </li>
             <li class="purple with-sub">
                 <span>
@@ -588,9 +616,22 @@
 
 
 
+    <!-- ||||||||||||||
+    Main content Start
+    ||||||||||||||| -->
+    <div class="page-content">
+        <div class="container-fluid">
 
-    @yield('main-content')
 
+
+            @yield('main-content')
+
+
+
+        </div>
+        <!--.container-fluid-->
+    </div>
+    <!--.page-content-->
 
 
 
@@ -835,6 +876,11 @@
         });
     </script>
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
+
+
+    @yield('main-script-content')
+
+
 </body>
 
 </html>

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <div class="page-content">
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6">
                     <div class="chart-statistic-box">
@@ -519,8 +517,4 @@
                 </div>
                 <!--.col-->
             </div>
-        </div>
-        <!--.container-fluid-->
-    </div>
-    <!--.page-content-->
 @endsection

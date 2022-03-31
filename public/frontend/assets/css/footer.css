@@ -1,0 +1,128 @@
+
+/*** 
+
+====================================================================
+	Main Footer
+====================================================================
+
+***/
+
+.main-footer{
+	position:relative;
+	background-color:var(--main-color-two);
+}
+
+.main-footer .pattern-layer-one{
+	position:absolute;
+	left:0px;
+	bottom:140px;
+	width:449px;
+	height:350px;
+	background-repeat:no-repeat;
+}
+
+.main-footer .pattern-layer-two{
+	position:absolute;
+	right:0px;
+	bottom:140px;
+	width:472px;
+	height:388px;
+	background-repeat:no-repeat;
+}
+
+.main-footer .widgets-section{
+	position:relative;
+	text-align:center;
+	padding:210px 0px 110px;
+}
+
+.main-footer .logo{
+	position:relative;
+	line-height:1em;
+	margin-bottom:var(--margin-bottom-50);
+}
+
+.main-footer .contact-info-list{
+	position:relative;
+}
+
+.main-footer .contact-info-list li{
+	position:relative;
+	text-align:left;
+	line-height:1.9em;
+	color:var(--white-color);
+	padding-left:var(--padding-left-60);
+	margin-right:var(--margin-right-100);
+	margin-bottom:var(--margin-bottom-30);
+	display:inline-table;
+}
+
+.main-footer .contact-info-list li:last-child{
+	margin-right:var(--margin-zero);
+}
+
+.main-footer .contact-info-list li a{
+	position:relative;
+	display:inline-block;
+	color:var(--white-color);
+}
+
+.main-footer .contact-info-list li .icon{
+	position:absolute;
+	left:0px;
+	top:0px;
+	line-height:1em;
+}
+
+.main-footer .contact-info-list li a:hover{
+	color:var(--main-color);
+}
+
+.main-footer .social-box{
+	position:relative;
+	margin-top:var(--margin-top-40);
+}
+
+.main-footer .social-box li{
+	position:relative;
+	margin:0px 6px;
+	display:inline-block;
+}
+
+.main-footer .social-box li a{
+	position:relative;
+	width:40px;
+	height:40px;
+	line-height:40px;
+	border-radius:50px;
+	display:inline-block;
+	color:var(--white-color);
+	background-color:var(--main-color);
+}
+
+.main-footer .social-box li a:hover{
+	color:var(--main-color);
+	background-color:var(--white-color);
+}
+
+.main-footer .footer-bottom{
+	position:relative;
+	padding:34px 0px;
+	text-align:center;
+	background-color:#010a2e;
+}
+
+.main-footer .footer-bottom .copyright{
+	position:relative;
+	font-size:var(--font-15);
+	color:var(--white-color);
+}
+
+.main-footer .footer-bottom .copyright a{
+	position:relative;
+	color:var(--main-color);
+}
+
+.main-footer .footer-bottom .copyright a:hover{
+	color:var(--white-color);
+}

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\{HomeController, FrontendController, StaffController, ProfileController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -27,7 +29,28 @@ Auth::routes();
 
 
 
+//===================
+// FrontendController
+//===================
+Route::get('/', [FrontendController::class, 'frontpage'])->name('frontpage');
+
+
+
 //===============
 // HomeController
 //===============
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
+
+
+
+//==================
+// StaffController
+//==================
+Route::resource('staff', StaffController::class);
+
+
+
+//==================
+// ProfileController
+//==================
+Route::resource('profile', ProfileController::class);
