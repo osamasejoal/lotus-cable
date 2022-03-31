@@ -65,9 +65,9 @@
                                         <td>{{ $staff->created_by}}</td>
                                         <td>{{ $staff->updated_by}}</td>
                                         <td class="col-2">
-                                            <a href="{{route('staff.edit', $categorie->id)}}" class="btn btn-sm btn-info mr-2">Edit</a>
+                                            <a href="{{route('staff.edit', $staff->id)}}" class="btn btn-sm btn-info mr-2">Edit</a>
 
-                                            <form class="d-inline" action="{{route('staff.destroy', $categorie->id)}}" method="POST">
+                                            <form class="d-inline" action="{{route('staff.destroy', $staff->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger">Delete</button>
