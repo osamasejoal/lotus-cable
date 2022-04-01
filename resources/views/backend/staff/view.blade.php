@@ -62,8 +62,14 @@
                                         </td>
                                         <td>{{ $staff->address}}</td>
                                         <td>{{ $staff->status == 1 ? 'On' : 'Off' }}</td>
-                                        <td>{{ $staff->created_by}}</td>
-                                        <td>{{ $staff->updated_by}}</td>
+                                        <td>{{ App\Models\User::find($staff->created_by)->name }}</td>
+
+                                        <td>
+                                            @if (App\Models\User::find($staff->updated_by) != null)
+                                             {{ App\Models\User::find($staff->updated_by)->name }}
+                                            @endif
+                                        </td>
+
                                         <td class="col-2">
                                             <a href="{{route('staff.edit', $staff->id)}}" class="btn btn-sm btn-info mr-2">Edit</a>
 

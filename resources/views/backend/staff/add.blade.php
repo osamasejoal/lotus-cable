@@ -28,6 +28,24 @@
             <form action="{{ route('staff.store') }}" method="POST" enctype="multipart/form-data"
                 class="contact-form row m-auto">
                 @csrf
+
+
+                <div class="form-field col-lg-6">
+                    <label class="label" for="area_id">Select Area *</label>
+                    <select style="background-color:transparent;" name="area_id" id="area_id" class="input-text js-input">
+                        <option value="">-- Area --</option>
+                        @foreach ($areas as $area)
+                            <option value="{{$area->id}}">{{$area->name}}</option>
+                        @endforeach
+                    </select>
+
+
+                    @error('area_id')
+                        <span class="text-danger text-left">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
                 <div class="form-field col-lg-6">
                     <label class="label" for="name">Name *</label>
                     <input value="{{old('name')}}" name="name" id="name" class="input-text js-input" type="text">
@@ -50,15 +68,6 @@
                 </div>
 
 
-                <div class="form-field col-lg-6">
-                    <label class="label" for="password">Password *</label>
-                    <input value="{{old('password')}}" name="password" id="password" class="input-text js-input" type="text">
-
-
-                    @error('password')
-                        <span class="text-danger text-left">{{ $message }}</span>
-                    @enderror
-                </div>
 
 
                 <div class="form-field col-lg-6">
@@ -95,17 +104,6 @@
 
 
                     @error('address')
-                        <span class="text-danger text-left">{{ $message }}</span>
-                    @enderror
-                </div>
-
-
-                <div class="form-field col-lg-6">
-                    <label class="label" for="image">Choose Profile Picture</label>
-                    <input name="image" id="image" class="input-text js-input" type="file">
-
-
-                    @error('image')
                         <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>

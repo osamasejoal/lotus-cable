@@ -535,7 +535,10 @@
 
         <div class="mb-4">
             <img src="{{asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image}}" alt="Profile Picture" width="40%" style="display:block;margin:auto;">
-            <span style="display:block;text-align:center;margin-top:10px;font-size:20px;color:green">
+            <span style="display:block;text-align:center;margin-top:10px;font-size:15px;color:green">
+                {{auth()->user()->name}}
+            </span>
+            <span style="display:block;text-align:center;font-size:20px;color:green">
                 @if (auth()->user()->type == 1)
                     Admin
                 @elseif (auth()->user()->type == 2)
@@ -546,12 +549,28 @@
 
 
         <ul class="side-menu-list">
+
+            <!-- Dashboard -->
             <li class="grey">
                 <a href="{{ route('dashboard') }}">
                     <i class="font-icon font-icon-dashboard"></i>
                     <span class="lbl">Dashboard</span>
                 </a>
             </li>
+
+            <!-- Area -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-area-chart"></i>
+                    <span class="lbl">Area</span>
+                </span>
+                <ul>
+                    <li><a href="{{route('area.create')}}"><span class="lbl">Create Area</span></a></li>
+                    <li><a href="{{route('area.index')}}"><span class="lbl">Area List</span></a></li>
+                </ul>
+            </li>
+
+            <!-- Staff -->
             <li class="purple with-sub">
                 <span>
                     <i class="font-icon fa fa-users"></i>
@@ -562,6 +581,16 @@
                     <li><a href="{{route('staff.index')}}"><span class="lbl">Staff List</span></a></li>
                 </ul>
             </li>
+
+
+            <li class="red">
+                <a href="{{route('company.profile')}}">
+                    <i class="font-icon fa fa-building"></i>
+                    <span class="lbl">Company Profile</span>
+                </a>
+            </li>
+
+            
             <li class="purple with-sub">
                 <span>
                     <i class="font-icon font-icon-comments active"></i>
