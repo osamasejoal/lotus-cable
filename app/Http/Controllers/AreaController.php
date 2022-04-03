@@ -26,6 +26,21 @@ class AreaController extends Controller
 
 
 
+    //===========================================
+    // updateStatus method for update Area status
+    //===========================================
+    public function updateStatus(Request $request)
+    {
+        $area = Area::find($request->area_id);
+        $area->status = $request->status;
+        $area->save();
+        return response()->json(['success', 'Status change successfully']);
+    }
+
+
+
+
+
     //==============================
     // CREATE method for create area
     //==============================
@@ -116,6 +131,6 @@ class AreaController extends Controller
     public function destroy($id)
     {
         Area::find($id)->delete();
-        return back();
+        return back()->with('success', 'Succesfully deleted your area');
     }
 }

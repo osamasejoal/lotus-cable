@@ -34,6 +34,28 @@ class StaffController extends Controller
 
 
 
+    //============================================
+    // updateStatus method for update Staff status
+    //============================================
+    public function updateStatus(Request $request, $id)
+    {
+        $staffs_id = User::find($request->staff_id)->staff_id;
+
+        $staff_u = User::find($request->staff_id);
+        $staff_u->status = $request->status;
+        $staff_u->save();
+        return response()->json(['success', 'Status change successfully']);
+
+        $staff_t = Staff::find($staffs_id);
+        $staff_t->status = $request->status;
+        $staff_t->save();
+        return response()->json(['success', 'Status change successfully']);
+    }
+
+
+
+
+
     //======================================
     // CREATE method for create Staff account
     //======================================
@@ -169,7 +191,7 @@ class StaffController extends Controller
                 unlink(base_path('public/backend/assets/images/profile-pic/' . $userd->image));
             }
             $img = Image::make($request->image);
-            $img_name = $userd->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
+            $img_name = $userd->type . $staffs_id->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/profile-pic/' . $img_name));
 
             User::find($id)->update([
@@ -215,7 +237,12 @@ class StaffController extends Controller
     //========================================
     public function destroy($id)
     {
+        $staffs_id = User::find($id)->staff_id;
+
         User::find($id)->delete();
-        return back();
+
+        Staff::find($staffs_id)->delete();
+
+        return back()->with('success', 'Successfully deleted your staff');
     }
 }

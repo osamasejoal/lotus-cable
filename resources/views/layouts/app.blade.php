@@ -570,10 +570,22 @@
                 </ul>
             </li>
 
+            <!-- Package -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-balance-scale"></i>
+                    <span class="lbl">Package</span>
+                </span>
+                <ul>
+                    <li><a href="{{route('package.create')}}"><span class="lbl">Create Package</span></a></li>
+                    <li><a href="{{route('package.index')}}"><span class="lbl">Package List</span></a></li>
+                </ul>
+            </li>
+
             <!-- Staff -->
             <li class="purple with-sub">
                 <span>
-                    <i class="font-icon fa fa-users"></i>
+                    <i class="font-icon fa fa-user-plus"></i>
                     <span class="lbl">Staff</span>
                 </span>
                 <ul>
@@ -582,7 +594,20 @@
                 </ul>
             </li>
 
+            <!-- Customer -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-users"></i>
+                    <span class="lbl">Customer</span>
+                </span>
+                <ul>
+                    <li><a href="{{route('customer.create')}}"><span class="lbl">Create Customer</span></a></li>
+                    <li><a href="{{route('customer.index')}}"><span class="lbl">Customer List</span></a></li>
+                </ul>
+            </li>
 
+
+            <!-- Company Profile -->
             <li class="red">
                 <a href="{{route('company.profile')}}">
                     <i class="font-icon fa fa-building"></i>
@@ -590,8 +615,43 @@
                 </a>
             </li>
 
-            
+
+            <!-- Transaction -->
             <li class="purple with-sub">
+                <span>
+                    <span class="font-icon fa fa-credit-card"></span>
+                    <span class="lbl">Transaction</span>
+                </span>
+                <ul>
+                    
+                    <!-- Transaction Option -->
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">Transaction Option</span>
+                        </span>
+                        <ul>
+                            <li><a href="{{ route('transaction-option.create') }}"><span class="lbl">Create Transaction Option</span></a></li>
+                            <li><a href="{{ route('transaction-option.index') }}"><span class="lbl">View Transaction Option</span></a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Transaction Type -->
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">Transaction Type</span>
+                        </span>
+                        <ul>
+                            <li><a href="{{ route('transaction-type.create') }}"><span class="lbl">Create Transaction Type</span></a></li>
+                            <li><a href="{{ route('transaction-type.index') }}"><span class="lbl">View Transaction Type</span></a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+            
+            <!-- Demo for need -->
+            {{-- <li class="purple with-sub">
                 <span>
                     <i class="font-icon font-icon-comments active"></i>
                     <span class="lbl">Messages</span>
@@ -637,7 +697,8 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
+
         </ul>
 
     </nav>
