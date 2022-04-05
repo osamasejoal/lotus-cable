@@ -1,18 +1,5 @@
 @extends('layouts.app')
 
-
-@section('main-style-content')
-    {{-- Style for Table --}}
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
-
-    <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
-    {{-- END Style for Table --}}
-@endsection
-
-
-
 @section('main-content')
 
 
@@ -44,9 +31,9 @@
                                     <th>Address</th>
                                     <th>NID</th>
                                     <th>Register Date</th>
-                                    <th>Status</th>
                                     <th>Created By</th>
                                     <th>Updated By</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -78,7 +65,6 @@
                                         <td>{{ $customer->address}}</td>
                                         <td>Null</td>
                                         <td>Null</td>
-                                        <td>{{ $customer->status == 1 ? 'On' : 'Off' }}</td>
                                         <td>{{ App\Models\User::find($customer->created_by)->name }}</td>
 
                                         <td>
@@ -87,13 +73,21 @@
                                             @endif
                                         </td>
 
+                                        <td>
+                                            @if ($customer->status == 1)
+                                                <a href="{{route('customer.status', $customer->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>
+                                            @elseif ($customer->status == 0)
+                                                <a href="{{route('customer.status', $customer->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-off"></i></a>
+                                            @endif
+                                        </td>
+
                                         <td class="col-2">
-                                            <a href="{{route('customer.edit', $customer->id)}}" class="btn btn-sm btn-info mr-2">Edit</a>
+                                            <a href="{{route('customer.edit', $customer->id)}}" class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
 
                                             <form class="d-inline" action="{{route('customer.destroy', $customer->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                                <button class="delete-btn"><i class="font-icon fa fa-trash-o" style="font-size: 30px;"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -110,16 +104,4 @@
     </section>
 
 
-@endsection
-
-
-
-
-@section('main-script-content')
-    {{-- Script for Table --}}
-    {{-- <script src="{{ asset('backend/table/js/jquery.min.js') }}"></script> --}}
-    <script src="{{ asset('backend/table/js/popper.js') }}"></script>
-    <script src="{{ asset('backend/table/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('backend/table/js/main.js') }}"></script>
-    {{-- END Script for Table --}}
 @endsection

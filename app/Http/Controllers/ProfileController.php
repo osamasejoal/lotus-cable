@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
+use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -27,7 +29,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return "create staff";
+        $areas = Area::all();
+        $packages = Package::all();
+        return view('backend.profile.create-account', compact('areas', 'packages'));
     }
 
     /**

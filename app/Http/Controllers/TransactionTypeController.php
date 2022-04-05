@@ -29,12 +29,21 @@ class TransactionTypeController extends Controller
     //=======================================================
     // updateStatus method for update Transaction Type status
     //=======================================================
-    public function updateStatus(Request $request)
+    public function updateStatus($id)
     {
-        $trans_type = TransactionType::find($request->t_type_id);
-        $trans_type->status = $request->status;
-        $trans_type->save();
-        return response()->json(['success', 'Status change successfully']);
+        $status = TransactionType::find($id)->status;
+
+        if ($status == 1) {
+            TransactionType::find($id)->update([
+                'status' => 0,
+            ]);
+        } elseif ($status == 0) {
+            TransactionType::find($id)->update([
+                'status' => 1,
+            ]);
+        }
+
+        return back();
     }
     
 
@@ -59,18 +68,18 @@ class TransactionTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'amount' => 'required | integer',
+            'name'              => 'required',
+            'amount'            => 'required | integer',
         ], [
-            'name.required' => 'This field is required',
-            'amount.required' => 'This field is required',
-            'amount.integer' => 'Only Integer is allowed',
+            'name.required'     => 'This field is required',
+            'amount.required'   => 'This field is required',
+            'amount.integer'    => 'Only Integer is allowed',
         ]);
 
         TransactionType::insert([
-            'name' => $request->name,
-            'amount' => $request->amount,
-            'created_at' => Carbon::now(),
+            'name'              => $request->name,
+            'amount'            => $request->amount,
+            'created_at'        => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully created Transaction Type');
@@ -109,21 +118,21 @@ class TransactionTypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'amount' => 'required | integer',
-            'status' => 'required',
+            'name'              => 'required',
+            'amount'            => 'required | integer',
+            'status'            => 'required',
         ], [
-            'name.required' => 'This field is required',
-            'amount.required' => 'This field is required',
-            'amount.integer' => 'Only Integer is allowed',
-            'status.required' => 'This field is required',
+            'name.required'     => 'This field is required',
+            'amount.required'   => 'This field is required',
+            'amount.integer'    => 'Only Integer is allowed',
+            'status.required'   => 'This field is required',
         ]);
 
         TransactionType::find($id)->update([
-            'name' => $request->name,
-            'amount' => $request->amount,
-            'status' => $request->status,
-            'updated_at' => Carbon::now(),
+            'name'              => $request->name,
+            'amount'            => $request->amount,
+            'status'            => $request->status,
+            'updated_at'        => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully updated Transaction Type');

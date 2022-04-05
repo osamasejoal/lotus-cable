@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
 @section('main-content')
-
-
     <section style="margin-top: -100px" class="ftco-section">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    
-                    <h1 class="title text-center text-primary">Staff List</h1>
+
+                    <h1 class="title text-center text-primary">Admin List</h1>
 
                     @if (session('success'))
                         <div class="alert alert-success text-center col-12 mt-4">
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     <div class="table-wrap">
                         <table class="table table-responsive-xl text-center">
                             <thead>
@@ -34,55 +32,59 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($staffs as $staff)
-
+                                @foreach ($admins as $admin)
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"
-                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $staff->image) }}"
+                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $admin->image) }}"
                                                 alt="img not found" width="50px">
                                         </td>
-                                        <td>{{ $staff->name }}</td>
-                                        <td>{{ $staff->email }}</td>
-                                        <td>{{ $staff->phone }}</td>
+                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>{{ $admin->phone }}</td>
                                         <td>
-                                            @if ($staff->gender == 1)
+                                            @if ($admin->gender == 1)
                                                 Male
-                                            @elseif ($staff->gender == 2)
+                                            @elseif ($admin->gender == 2)
                                                 Female
-                                            @elseif ($staff->gender == 3)
+                                            @elseif ($admin->gender == 3)
                                                 Others
                                             @endif
                                         </td>
-                                        <td>{{ $staff->address}}</td>
-
-                                        <td>{{ App\Models\User::find($staff->created_by)->name }}</td>
+                                        <td>{{ $admin->address }}</td>
 
                                         <td>
-                                            @if (App\Models\User::find($staff->updated_by) != null)
-                                             {{ App\Models\User::find($staff->updated_by)->name }}
+                                            @if ($admin->created_by != null)
+                                                {{ App\Models\User::find($admin->created_by)->name }}
                                             @endif
                                         </td>
-                                        
+
                                         <td>
-                                            @if ($staff->status == 1)
-                                                <a href="{{route('staff.status', $staff->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>
-                                            @elseif ($staff->status == 0)
-                                                <a href="{{route('staff.status', $staff->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-off"></i></a>
+                                            @if ($admin->updated_by != null)
+                                                {{ App\Models\User::find($admin->updated_by)->name }}
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @if ($admin->status == 1)
+                                                <a href="{{route('admin.status', $admin->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>
+                                            @elseif ($admin->status == 0)
+                                                <a href="{{route('admin.status', $admin->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-off"></i></a>
                                             @endif
                                         </td>
 
                                         <td class="col-2">
-                                            <a href="{{route('staff.edit', $staff->id)}}" class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
+                                            <a href="{{ route('admin.edit', $admin->id) }}"
+                                                class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
 
-                                            <form class="d-inline" action="{{route('staff.destroy', $staff->id)}}" method="POST">
+                                            <form class="d-inline" action="{{ route('admin.destroy', $admin->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="delete-btn"><i class="font-icon fa fa-trash-o" style="font-size: 30px;"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-
                                 @endforeach
 
                             </tbody>
@@ -93,6 +95,4 @@
             </div>
         </div>
     </section>
-
-
 @endsection

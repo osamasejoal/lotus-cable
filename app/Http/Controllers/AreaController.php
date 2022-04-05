@@ -29,12 +29,21 @@ class AreaController extends Controller
     //===========================================
     // updateStatus method for update Area status
     //===========================================
-    public function updateStatus(Request $request)
+    public function updateStatus($id)
     {
-        $area = Area::find($request->area_id);
-        $area->status = $request->status;
-        $area->save();
-        return response()->json(['success', 'Status change successfully']);
+        $status = Area::find($id)->status;
+
+        if ($status == 1) {
+            Area::find($id)->update([
+                'status' => 0,
+            ]);
+        } elseif ($status == 0) {
+            Area::find($id)->update([
+                'status' => 1,
+            ]);
+        }
+
+        return back();
     }
 
 
@@ -65,8 +74,8 @@ class AreaController extends Controller
         ]);
 
         Area::insert([
-            'name' => $request->name,
-            'created_at' => Carbon::now(),
+            'name'          => $request->name,
+            'created_at'    => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully create Area');
@@ -105,17 +114,17 @@ class AreaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
+            'name'      => 'required',
+            'status'    => 'required',
         ], [
-            'name.required' => 'This field is required',
-            'status.required' => 'This field is required',
+            'name.required'     => 'This field is required',
+            'status.required'   => 'This field is required',
         ]);
 
         Area::find($id)->update([
-            'name' => $request->name,
-            'status' => $request->status,
-            'updated_at' => Carbon::now(),
+            'name'          => $request->name,
+            'status'        => $request->status,
+            'updated_at'    => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully updated Area data');

@@ -11,6 +11,14 @@ class Package extends Model
 
     protected $guarded = [];
 
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH CUSTOMER TABLE
+    |--------------------------------------------------------------------------
+    */
     public function customers()
     {
         return $this->hasOne(Customer::class);

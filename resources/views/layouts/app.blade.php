@@ -26,6 +26,28 @@
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/main.css">
 
+            
+
+
+    <!--
+    |--------------------------------------------------------------------------
+    |                           FORM STYLE
+    |--------------------------------------------------------------------------
+    -->
+    <link rel="stylesheet" href="{{ asset('backend/form/style.css') }}">
+
+            
+
+
+    <!--
+    |--------------------------------------------------------------------------
+    |                           TABLE STYLE
+    |--------------------------------------------------------------------------
+    -->
+    <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    
+
     @yield('main-style-content')
 </head>
 
@@ -248,7 +270,8 @@
                         <div class="dropdown user-menu">
                             <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image }}" alt="">
+                                <img src="{{ asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image }}"
+                                    alt="">
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
                                 <a class="dropdown-item" href="{{ route('frontpage') }}"><span
@@ -534,9 +557,10 @@
     <nav class="side-menu">
 
         <div class="mb-4">
-            <img src="{{asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image}}" alt="Profile Picture" width="40%" style="display:block;margin:auto;">
+            <img src="{{ asset('backend/assets/images/profile-pic') . '/' . auth()->user()->image }}"
+                alt="Profile Picture" width="40%" style="display:block;margin:auto;">
             <span style="display:block;text-align:center;margin-top:10px;font-size:15px;color:green">
-                {{auth()->user()->name}}
+                {{ auth()->user()->name }}
             </span>
             <span style="display:block;text-align:center;font-size:20px;color:green">
                 @if (auth()->user()->type == 1)
@@ -558,6 +582,29 @@
                 </a>
             </li>
 
+            <!-- Accounts -->
+            <li class="red with-sub">
+                <span>
+                    <i class="font-icon font-icon-user"></i>
+                    <span class="lbl">Accounts</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Create Account</span></a>
+                    </li>
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">All Accounts</span>
+                        </span>
+                        <ul>
+                            <li><a href="{{route('admin.index')}}"><span class="lbl">Admin</span></a></li>
+                            <li><a href="{{route('staff.index')}}"><span class="lbl">Staff</span></a></li>
+                            <li><a href="{{route('customer.index')}}"><span class="lbl">Customer</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
             <!-- Area -->
             <li class="purple with-sub">
                 <span>
@@ -565,8 +612,8 @@
                     <span class="lbl">Area</span>
                 </span>
                 <ul>
-                    <li><a href="{{route('area.create')}}"><span class="lbl">Create Area</span></a></li>
-                    <li><a href="{{route('area.index')}}"><span class="lbl">Area List</span></a></li>
+                    <li><a href="{{ route('area.create') }}"><span class="lbl">Create Area</span></a></li>
+                    <li><a href="{{ route('area.index') }}"><span class="lbl">Area List</span></a></li>
                 </ul>
             </li>
 
@@ -577,8 +624,10 @@
                     <span class="lbl">Package</span>
                 </span>
                 <ul>
-                    <li><a href="{{route('package.create')}}"><span class="lbl">Create Package</span></a></li>
-                    <li><a href="{{route('package.index')}}"><span class="lbl">Package List</span></a></li>
+                    <li><a href="{{ route('package.create') }}"><span class="lbl">Create Package</span></a>
+                    </li>
+                    <li><a href="{{ route('package.index') }}"><span class="lbl">Package List</span></a>
+                    </li>
                 </ul>
             </li>
 
@@ -589,8 +638,9 @@
                     <span class="lbl">Staff</span>
                 </span>
                 <ul>
-                    <li><a href="{{route('staff.create')}}"><span class="lbl">Create Staff</span></a></li>
-                    <li><a href="{{route('staff.index')}}"><span class="lbl">Staff List</span></a></li>
+                    <li><a href="{{ route('staff.create') }}"><span class="lbl">Create Staff</span></a>
+                    </li>
+                    <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff List</span></a></li>
                 </ul>
             </li>
 
@@ -601,15 +651,17 @@
                     <span class="lbl">Customer</span>
                 </span>
                 <ul>
-                    <li><a href="{{route('customer.create')}}"><span class="lbl">Create Customer</span></a></li>
-                    <li><a href="{{route('customer.index')}}"><span class="lbl">Customer List</span></a></li>
+                    <li><a href="{{ route('customer.create') }}"><span class="lbl">Create
+                                Customer</span></a></li>
+                    <li><a href="{{ route('customer.index') }}"><span class="lbl">Customer List</span></a>
+                    </li>
                 </ul>
             </li>
 
 
             <!-- Company Profile -->
             <li class="red">
-                <a href="{{route('company.profile')}}">
+                <a href="{{ route('company.profile') }}">
                     <i class="font-icon fa fa-building"></i>
                     <span class="lbl">Company Profile</span>
                 </a>
@@ -623,15 +675,17 @@
                     <span class="lbl">Transaction</span>
                 </span>
                 <ul>
-                    
+
                     <!-- Transaction Option -->
                     <li class="with-sub">
                         <span>
                             <span class="lbl">Transaction Option</span>
                         </span>
                         <ul>
-                            <li><a href="{{ route('transaction-option.create') }}"><span class="lbl">Create Transaction Option</span></a></li>
-                            <li><a href="{{ route('transaction-option.index') }}"><span class="lbl">View Transaction Option</span></a></li>
+                            <li><a href="{{ route('transaction-option.create') }}"><span
+                                        class="lbl">Create Transaction Option</span></a></li>
+                            <li><a href="{{ route('transaction-option.index') }}"><span class="lbl">View
+                                        Transaction Option</span></a></li>
                         </ul>
                     </li>
 
@@ -641,15 +695,17 @@
                             <span class="lbl">Transaction Type</span>
                         </span>
                         <ul>
-                            <li><a href="{{ route('transaction-type.create') }}"><span class="lbl">Create Transaction Type</span></a></li>
-                            <li><a href="{{ route('transaction-type.index') }}"><span class="lbl">View Transaction Type</span></a></li>
+                            <li><a href="{{ route('transaction-type.create') }}"><span class="lbl">Create
+                                        Transaction Type</span></a></li>
+                            <li><a href="{{ route('transaction-type.index') }}"><span class="lbl">View
+                                        Transaction Type</span></a></li>
                         </ul>
                     </li>
 
                 </ul>
             </li>
 
-            
+
             <!-- Demo for need -->
             {{-- <li class="purple with-sub">
                 <span>
@@ -860,6 +916,41 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         $(document).ready(function() {
+
+            
+
+
+            /*
+            |--------------------------------------------------------------------------
+            |                           ADD USER JS
+            |--------------------------------------------------------------------------
+            */
+            $('.typeaccount').on('change', function() {
+
+                let var2 = $('.typeaccount').val();
+
+                if (var2 == 1) {
+                    $("#admin-form").show();
+                    $("#staff-form").hide();
+                    $("#customer-form").hide();
+                }
+                else if (var2 == 2) {
+                    $("#staff-form").show();
+                    $("#admin-form").hide();
+                    $("#customer-form").hide();
+                }
+                else{
+                    $("#customer-form").show();
+                    $("#admin-form").hide();
+                    $("#staff-form").hide();
+                }
+
+
+            });
+            
+
+
+
             $('.panel').each(function() {
                 try {
                     $(this).lobiPanel({
@@ -966,7 +1057,17 @@
         });
     </script>
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
+       
 
+
+
+    <!--
+    |--------------------------------------------------------------------------
+    |                           TABLE JS
+    |--------------------------------------------------------------------------
+    -->
+    <script src="{{ asset('backend/table/js/main.js') }}"></script>
+     
 
     @yield('main-script-content')
 

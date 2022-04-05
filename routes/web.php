@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{HomeController, FrontendController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController};
+use App\Http\Controllers\{HomeController, FrontendController, AdminController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +47,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 // AreaController
 //==================
 Route::resource('area', AreaController::class);
-Route::get('/update/area/status', [AreaController::class, 'updateStatus'])->name('update.area.status');
+Route::get('/update/area/status/{id}', [AreaController::class, 'updateStatus'])->name('area.status');
+
+
+
+//==================
+// AdminController
+//==================
+Route::resource('admin', AdminController::class);
+Route::get('/update/admin/status/{id}', [AdminController::class, 'updateStatus'])->name('admin.status');
 
 
 
@@ -55,7 +63,7 @@ Route::get('/update/area/status', [AreaController::class, 'updateStatus'])->name
 // StaffController
 //==================
 Route::resource('staff', StaffController::class);
-Route::get('/update/staff/status', [StaffController::class, 'updateStatus'])->name('update.staff.status');
+Route::get('/update/staff/status/{id}', [StaffController::class, 'updateStatus'])->name('staff.status');
 
 
 
@@ -63,6 +71,7 @@ Route::get('/update/staff/status', [StaffController::class, 'updateStatus'])->na
 // CustomerController
 //===================
 Route::resource('customer', CustomerController::class);
+Route::get('/update/customer/status/{id}', [CustomerController::class, 'updateStatus'])->name('customer.status');
 
 
 
@@ -85,7 +94,7 @@ Route::resource('profile', ProfileController::class);
 // PackageController
 //==================
 Route::resource('package', PackageController::class);
-Route::get('/update/package/status', [PackageController::class, 'updateStatus'])->name('update.package.status');
+Route::get('/update/package/status/{id}', [PackageController::class, 'updateStatus'])->name('package.status');
 
 
 
@@ -93,7 +102,7 @@ Route::get('/update/package/status', [PackageController::class, 'updateStatus'])
 // TransactionOptionController
 //============================
 Route::resource('transaction-option', TransactionOptionController::class);
-Route::get('/update/transaction/option/status', [TransactionOptionController::class, 'updateStatus'])->name('update.transaction.option.status');
+Route::get('/update/transaction/option/status/{id}', [TransactionOptionController::class, 'updateStatus'])->name('transaction.option.status');
 
 
 
@@ -101,4 +110,4 @@ Route::get('/update/transaction/option/status', [TransactionOptionController::cl
 // TransactionTypeController
 //============================
 Route::resource('transaction-type', TransactionTypeController::class);
-Route::get('/update/transaction/type/status', [TransactionTypeController::class, 'updateStatus'])->name('update.transaction.type.status');
+Route::get('/update/transaction/type/status/{id}', [TransactionTypeController::class, 'updateStatus'])->name('transaction.type.status');

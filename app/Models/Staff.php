@@ -11,12 +11,28 @@ class Staff extends Model
 
     protected $guarded = [];
 
-    public function areas()
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH AREA TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function area()
     {
         return $this->belongsTo(Area::class);
     }
 
-    public function users()
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH USER TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function user()
     {
         return $this->hasOne(User::class);
     }

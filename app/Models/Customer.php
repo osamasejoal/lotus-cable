@@ -11,18 +11,41 @@ class Customer extends Model
 
     protected $guarded = [];
 
+            
 
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH AREA TABLE
+    |--------------------------------------------------------------------------
+    */
     public function areas()
     {
         return $this->belongsTo(Area::class);
     }
+    
+            
 
-    public function packages()
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH PACKAGE TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function package()
     {
         return $this->belongsTo(Package::class);
     }
 
-    public function users()
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH USER TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function user()
     {
         return $this->hasOne(User::class);
     }

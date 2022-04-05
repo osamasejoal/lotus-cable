@@ -192,6 +192,16 @@ label {
 button {
   border-radius: 0; }
 
+button.delete-btn{
+  border: none;
+  background: transparent;
+  color: #40bfc1;
+}
+
+button.delete-btn:hover{
+  color: #0056b3;
+}
+
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color; }

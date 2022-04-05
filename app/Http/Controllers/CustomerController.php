@@ -32,6 +32,41 @@ class CustomerController extends Controller
 
 
 
+
+    //============================================
+    // updateStatus method for update Customer status
+    //============================================
+    public function updateStatus($id)
+    {
+        $customers_id = User::find($id)->customer_id;
+        $status = User::find($id)->status;
+
+        if ($status == 1) {
+
+            User::find($id)->update([
+                'status' => 0,
+            ]);
+            Customer::find($customers_id)->update([
+                'status' => 0,
+            ]);
+
+        } elseif ($status == 0) {
+
+            User::find($id)->update([
+                'status' => 1,
+            ]);
+            Customer::find($customers_id)->update([
+                'status' => 1,
+            ]);
+
+        }
+
+        return back();
+    }
+
+
+
+
     //==========================================
     // CREATE method for create customer account
     //==========================================
@@ -51,26 +86,26 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'area_id' => 'required',
-            'package_id' => 'required',
-            'name' => 'required',
-            'email' => 'required | email',
-            'phone' => 'required',
-            'address' => 'required',
-            'gender' => 'required',
-            'nid' => 'required',
-            'register_date' => 'required',
+            'area_id'                   => 'required',
+            'package_id'                => 'required',
+            'name'                      => 'required',
+            'email'                     => 'required | email',
+            'phone'                     => 'required',
+            'address'                   => 'required',
+            'gender'                    => 'required',
+            'nid'                       => 'required',
+            'register_date'             => 'required',
         ], [
-            'area_id.required' => 'This field is Required',
-            'package_id.required' => 'This field is Required',
-            'name.required' => 'This field is Required',
-            'email.required' => 'This field is Required',
-            'email.email' => 'Enter a valid email',
-            'phone.required' => 'This field is Required',
-            'address.required' => 'This field is Required',
-            'gender.required' => 'This field is Required',
-            'nid.required' => 'This field is Required',
-            'register_date.required' => 'This field is Required',
+            'area_id.required'          => 'This field is Required',
+            'package_id.required'       => 'This field is Required',
+            'name.required'             => 'This field is Required',
+            'email.required'            => 'This field is Required',
+            'email.email'               => 'Enter a valid email',
+            'phone.required'            => 'This field is Required',
+            'address.required'          => 'This field is Required',
+            'gender.required'           => 'This field is Required',
+            'nid.required'              => 'This field is Required',
+            'register_date.required'    => 'This field is Required',
         ]);
 
         $customer_password = Str::random('8');
@@ -79,29 +114,29 @@ class CustomerController extends Controller
 
 
         $customer_data = Customer::create([
-            'area_id' => $request->area_id,
-            'package_id' => $request->package_id,
-            'customer_id' => $this->generateUniqueCode(),
-            'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'nid' => $request->nid,
-            'register_date' => $request->register_date,
+            'area_id'           => $request->area_id,
+            'package_id'        => $request->package_id,
+            'customer_id'       => $this->generateUniqueCode(),
+            'name'              => $request->name,
+            'email'             => $request->email,
+            'address'           => $request->address,
+            'phone'             => $request->phone,
+            'nid'               => $request->nid,
+            'register_date'     => $request->register_date,
         ]);
 
 
         User::insert([
-            'customer_id' => $customer_data->id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($customer_password),
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'type' => 3,
-            'created_by' => auth()->id(),
-            'created_at' => Carbon::now(),
+            'customer_id'       => $customer_data->id,
+            'name'              => $request->name,
+            'email'             => $request->email,
+            'password'          => Hash::make($customer_password),
+            'phone'             => $request->phone,
+            'gender'            => $request->gender,
+            'address'           => $request->address,
+            'type'              => 3,
+            'created_by'        => auth()->id(),
+            'created_at'        => Carbon::now(),
         ]);
 
 
@@ -157,29 +192,29 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required | email',
-            'phone' => 'required',
-            'gender' => 'required',
-            'address' => 'required',
-            'nid' => 'required',
-            'area_id' => 'required',
-            'package_id' => 'required',
-            'image' => 'image | mimes:png,jpg,jpeg',
-            'status' => 'required',
+            'name'                  => 'required',
+            'email'                 => 'required | email',
+            'phone'                 => 'required',
+            'gender'                => 'required',
+            'address'               => 'required',
+            'nid'                   => 'required',
+            'area_id'               => 'required',
+            'package_id'            => 'required',
+            'image'                 => 'image | mimes:png,jpg,jpeg',
+            'status'                => 'required',
         ], [
-            'name.required' => 'This field is Required',
-            'email.required' => 'This field is Required',
-            'email.email' => 'Enter a valid email',
-            'phone.required' => 'This field is Required',
-            'gender.required' => 'This field is Required',
-            'address.required' => 'This field is Required',
-            'nid.required' => 'This field is Required',
-            'area_id.required' => 'This field is Required',
-            'package_id.required' => 'This field is Required',
-            'image.image' => 'Please choose a image file',
-            'image.mimes' => 'Please choose a png, jpg or jpeg File',
-            'status.required' => 'This field is Required',
+            'name.required'         => 'This field is Required',
+            'email.required'        => 'This field is Required',
+            'email.email'           => 'Enter a valid email',
+            'phone.required'        => 'This field is Required',
+            'gender.required'       => 'This field is Required',
+            'address.required'      => 'This field is Required',
+            'nid.required'          => 'This field is Required',
+            'area_id.required'      => 'This field is Required',
+            'package_id.required'   => 'This field is Required',
+            'image.image'           => 'Please choose a image file',
+            'image.mimes'           => 'Please choose a png, jpg or jpeg File',
+            'status.required'       => 'This field is Required',
         ]);
 
         $userd = User::find($id);
@@ -204,26 +239,26 @@ class CustomerController extends Controller
 
 
         User::find($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'status' => $request->status,
-            'updated_by' => auth()->id(),
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'phone'         => $request->phone,
+            'gender'        => $request->gender,
+            'address'       => $request->address,
+            'status'        => $request->status,
+            'updated_by'    => auth()->id(),
         ]);
 
 
 
         Customer::find($customers_id)->update([
-            'area_id' =>$request->area_id,
-            'package_id' =>$request->package_id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'nid' => $request->nid,
-            'status' => $request->status,
+            'area_id'       =>$request->area_id,
+            'package_id'    =>$request->package_id,
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'phone'         => $request->phone,
+            'address'       => $request->address,
+            'nid'           => $request->nid,
+            'status'        => $request->status,
         ]);
 
 

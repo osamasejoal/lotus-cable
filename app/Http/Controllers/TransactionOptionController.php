@@ -29,12 +29,21 @@ class TransactionOptionController extends Controller
     //=========================================================
     // updateStatus method for update Transaction Option status
     //=========================================================
-    public function updateStatus(Request $request)
+    public function updateStatus($id)
     {
-        $trans_opt = TransactionOption::find($request->t_option_id);
-        $trans_opt->status = $request->status;
-        $trans_opt->save();
-        return response()->json(['success', 'Status change successfully']);
+        $status = TransactionOption::find($id)->status;
+
+        if ($status == 1) {
+            TransactionOption::find($id)->update([
+                'status' => 0,
+            ]);
+        } elseif ($status == 0) {
+            TransactionOption::find($id)->update([
+                'status' => 1,
+            ]);
+        }
+
+        return back();
     }
 
 
@@ -59,14 +68,14 @@ class TransactionOptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'              => 'required',
         ], [
-            'name.required' => 'This field is required',
+            'name.required'     => 'This field is required',
         ]);
 
         TransactionOption::insert([
-            'name' => $request->name,
-            'created_at' => Carbon::now(),
+            'name'              => $request->name,
+            'created_at'        => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully create Transaction Option');
@@ -105,17 +114,17 @@ class TransactionOptionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
+            'name'              => 'required',
+            'status'            => 'required',
         ], [
-            'name.required' => 'This field is required',
-            'status.required' => 'This field is required',
+            'name.required'     => 'This field is required',
+            'status.required'   => 'This field is required',
         ]);
 
         TransactionOption::find($id)->update([
-            'name' => $request->name,
-            'status' => $request->status,
-            'updated_at' => Carbon::now(),
+            'name'              => $request->name,
+            'status'            => $request->status,
+            'updated_at'        => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully updated Transaction Option');

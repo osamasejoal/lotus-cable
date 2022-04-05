@@ -1,15 +1,5 @@
 @extends('layouts.app')
 
-
-
-@section('main-style-content')
-    {{-- Style for Form --}}
-    <link rel="stylesheet" href="{{ asset('backend/form/style.css') }}">
-    {{-- END Style for Form --}}
-@endsection
-
-
-
 @section('main-content')
 
 
@@ -76,14 +66,4 @@
     </section>
 
 
-@endsection
-
-
-
-
-@section('main-script-content')
-    {{-- Script for Form in Banner/Edit --}}
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
-    {{-- END Script for Form in Banner/Edit --}}
 @endsection

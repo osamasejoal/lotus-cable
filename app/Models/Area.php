@@ -11,13 +11,28 @@ class Area extends Model
 
     protected $guarded = [];
 
+            
 
-    public function staffs()
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH STAFF TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function staff()
     {
         return $this->hasOne(Staff::class);
     }
 
-    public function customers()
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH CUSTOMER TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function customer()
     {
         return $this->hasOne(Customer::class);
     }

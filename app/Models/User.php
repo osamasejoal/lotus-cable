@@ -36,13 +36,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+            
 
-    public function staffs()
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH STAFF TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function staff()
     {
         return $this->belongsTo(Staff::class);
     }
 
-    public function customers()
+            
+
+
+    /*
+    |--------------------------------------------------------------------------
+|                          RELATION WITH CUSTOMER TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
