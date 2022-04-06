@@ -115,15 +115,12 @@ class TransactionOptionController extends Controller
     {
         $request->validate([
             'name'              => 'required',
-            'status'            => 'required',
         ], [
             'name.required'     => 'This field is required',
-            'status.required'   => 'This field is required',
         ]);
 
         TransactionOption::find($id)->update([
             'name'              => $request->name,
-            'status'            => $request->status,
             'updated_at'        => Carbon::now(),
         ]);
 

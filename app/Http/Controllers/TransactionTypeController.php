@@ -120,18 +120,15 @@ class TransactionTypeController extends Controller
         $request->validate([
             'name'              => 'required',
             'amount'            => 'required | integer',
-            'status'            => 'required',
         ], [
             'name.required'     => 'This field is required',
             'amount.required'   => 'This field is required',
             'amount.integer'    => 'Only Integer is allowed',
-            'status.required'   => 'This field is required',
         ]);
 
         TransactionType::find($id)->update([
             'name'              => $request->name,
             'amount'            => $request->amount,
-            'status'            => $request->status,
             'updated_at'        => Carbon::now(),
         ]);
 

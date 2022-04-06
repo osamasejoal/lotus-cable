@@ -25,7 +25,6 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = User::where('type', '3')->get();
-        // $customer = Customer::all();
         return view('backend.customer.view', compact('customers'));
     }
 
@@ -201,7 +200,6 @@ class CustomerController extends Controller
             'area_id'               => 'required',
             'package_id'            => 'required',
             'image'                 => 'image | mimes:png,jpg,jpeg',
-            'status'                => 'required',
         ], [
             'name.required'         => 'This field is Required',
             'email.required'        => 'This field is Required',
@@ -214,7 +212,6 @@ class CustomerController extends Controller
             'package_id.required'   => 'This field is Required',
             'image.image'           => 'Please choose a image file',
             'image.mimes'           => 'Please choose a png, jpg or jpeg File',
-            'status.required'       => 'This field is Required',
         ]);
 
         $userd = User::find($id);
@@ -244,7 +241,6 @@ class CustomerController extends Controller
             'phone'         => $request->phone,
             'gender'        => $request->gender,
             'address'       => $request->address,
-            'status'        => $request->status,
             'updated_by'    => auth()->id(),
         ]);
 
@@ -258,7 +254,6 @@ class CustomerController extends Controller
             'phone'         => $request->phone,
             'address'       => $request->address,
             'nid'           => $request->nid,
-            'status'        => $request->status,
         ]);
 
 
@@ -280,5 +275,27 @@ class CustomerController extends Controller
         Customer::find($customers_id)->delete();
 
         return back()->with('success', 'Successfully deleted your Customer');
+    }
+    
+
+
+
+    //==========================================
+    // ACTIVE CUSTOMER METHOD
+    //==========================================
+    public function activeCustomer(){
+        $customers = User::where('type', '3')->where('status', '1')->get();
+        return view('backend.customer.active-customer', compact('customers'));
+    }
+
+
+
+
+    //==========================================
+    // DEACTIVE CUSTOMER METHOD
+    //==========================================
+    public function deactiveCustomer(){
+        $customers = User::where('type', '3')->where('status', '0')->get();
+        return view('backend.customer.deactive-customer', compact('customers'));
     }
 }

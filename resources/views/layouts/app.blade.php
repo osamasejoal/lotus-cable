@@ -44,8 +44,8 @@
     |                           TABLE STYLE
     |--------------------------------------------------------------------------
     -->
-    <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    {{-- <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'> --}}
     
 
     @yield('main-style-content')
@@ -582,6 +582,133 @@
                 </a>
             </li>
 
+
+            <!-- Users -->
+            <li class="grey with-sub">
+                <span>
+                    <i class="font-icon font-icon-users"></i>
+                    <span class="lbl">Users</span>
+                </span>
+                <ul>
+
+                    <!-- Create all types of account -->
+                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Add New Users</span></a>
+                    
+                    <!-- Admin -->
+                    <li><a href="{{ route('admin.index') }}"><span class="lbl">Admin</span></a>
+
+                    <!-- Staffs -->
+                    <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff</span></a>
+                    </li>
+
+                    <!-- Customers -->
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">Customer</span>
+                        </span>
+                        <ul>
+                            <li><a href="{{route('admin.index')}}"><span class="lbl">All Customer</span></a></li>
+                            <li><a href="{{route('active.customer')}}"><span class="lbl">Active Customer</span></a></li>
+                            <li><a href="{{route('deactive.customer')}}"><span class="lbl">Deactive Customer</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
+            <!-- Bill Generate -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-area-chart"></i>
+                    <span class="lbl">Bill Generate</span>
+                </span>
+                <ul>
+                    <li><a href="#"><span class="lbl">Add New Bill</span></a></li>
+                    <li><a href="#"><span class="lbl">Generate Monthly Bill</span></a></li>
+                </ul>
+            </li>
+
+
+            <!-- Bill Payment -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-area-chart"></i>
+                    <span class="lbl">Bill Generate</span>
+                </span>
+                <ul>
+                    <li><a href="#"><span class="lbl">Monthly Payment</span></a></li>
+                </ul>
+            </li>
+
+
+            <!-- Bill Transaction -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-area-chart"></i>
+                    <span class="lbl">Bill Transaction</span>
+                </span>
+                <ul>
+                    <li><a href="#"><span class="lbl">Paid Transaction</span></a></li>
+                    <li><a href="#"><span class="lbl">Due Transaction</span></a></li>
+                </ul>
+            </li>
+
+
+            <!-- Bill Report -->
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon fa fa-area-chart"></i>
+                    <span class="lbl">Bill Report</span>
+                </span>
+                <ul>
+                    <li><a href="#"><span class="lbl">Daily Report</span></a></li>
+                    <li><a href="#"><span class="lbl">Monthly Status</span></a></li>
+                    <li><a href="#"><span class="lbl">Monthly Collection</span></a></li>
+                </ul>
+            </li>
+
+
+            <!-- Settings -->
+            <li class="grey with-sub">
+                <span>
+                    <i class="font-icon font-icon-users"></i>
+                    <span class="lbl">Settings</span>
+                </span>
+                <ul>
+
+                    <!-- Create all types of account -->
+                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Add New Users</span></a>
+                    
+                    <!-- Admin -->
+                    <li><a href="{{ route('admin.index') }}"><span class="lbl">Admin</span></a>
+
+                    <!-- Staffs -->
+                    <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff</span></a>
+                    </li>
+
+                    <!-- Customers -->
+                    <li class="with-sub">
+                        <span>
+                            <span class="lbl">Customer</span>
+                        </span>
+                        <ul>
+                            <li><a href="{{route('admin.index')}}"><span class="lbl">All Customer</span></a></li>
+                            <li><a href="{{route('staff.index')}}"><span class="lbl">Active Customer</span></a></li>
+                            <li><a href="{{route('customer.index')}}"><span class="lbl">Deactive Customer</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+
             <!-- Accounts -->
             <li class="red with-sub">
                 <span>
@@ -1066,7 +1193,7 @@
     |                           TABLE JS
     |--------------------------------------------------------------------------
     -->
-    <script src="{{ asset('backend/table/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('backend/table/js/main.js') }}"></script> --}}
      
 
     @yield('main-script-content')

@@ -97,22 +97,6 @@
                 </div>
 
 
-
-                <!-- Edit Status -->
-                <div class="form-field col-lg-6">
-                    <label class="label" for="status">Status</label>
-                    <select style="background-color:transparent" name="status" id="status" class="input-text js-input">
-                        <option value="1" {{ $customer->status == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ $customer->status == 0 ? 'selected' : '' }}>Deactive</option>
-                    </select>
-
-
-                    @error('status')
-                        <span class="text-danger text-left">{{ $message }}</span>
-                    @enderror
-                </div>
-
-
                 <!-- Edit Customer Area -->
                 <div class="form-field col-lg-6">
                     <label class="label" for="area_id">Area</label>

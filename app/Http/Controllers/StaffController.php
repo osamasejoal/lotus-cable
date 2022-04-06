@@ -183,7 +183,6 @@ class StaffController extends Controller
             'gender'            => 'required',
             'address'           => 'required',
             'image'             => 'image | mimes:png,jpg,jpeg',
-            'status'            => 'required',
         ], [
             'name.required'     => 'This field is Required',
             'email.required'    => 'This field is Required',
@@ -193,7 +192,6 @@ class StaffController extends Controller
             'address.required'  => 'This field is Required',
             'image.image'       => 'Please choose a image file',
             'image.mimes'       => 'Please choose a png, jpg or jpeg File',
-            'status.required'   => 'This field is Required',
         ]);
 
         $userd = User::find($id);
@@ -223,7 +221,6 @@ class StaffController extends Controller
             'phone'             => $request->phone,
             'gender'            => $request->gender,
             'address'           => $request->address,
-            'status'            => $request->status,
             'updated_by'        => auth()->id(),
         ]);
 
@@ -234,7 +231,6 @@ class StaffController extends Controller
             'email'             => $request->email,
             'phone'             => $request->phone,
             'address'           => $request->address,
-            'status'            => $request->status,
         ]);
 
 

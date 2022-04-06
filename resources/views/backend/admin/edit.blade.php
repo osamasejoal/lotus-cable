@@ -82,20 +82,6 @@
                 </div>
 
 
-                <div class="form-field col-lg-6">
-                    <label class="label" for="status">Status</label>
-                    <select style="background-color:transparent" name="status" id="status" class="input-text js-input">
-                        <option value="1" {{$admin->status == 1 ? 'selected' : ''}}>Active</option>
-                        <option value="0" {{$admin->status == 0 ? 'selected' : ''}}>Deactive</option>
-                    </select>
-
-
-                    @error('status')
-                        <span class="text-danger text-left">{{ $message }}</span>
-                    @enderror
-                </div>
-
-
                 <div style="flex-direction: row" class="form-field col-lg-12">
                     <label class="label my-auto" for="preimg">Previous
                         Profile Picture</label>

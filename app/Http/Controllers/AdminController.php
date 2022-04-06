@@ -154,7 +154,6 @@ class AdminController extends Controller
             'gender'            => 'required',
             'address'           => 'required',
             'image'             => 'image | mimes:png,jpg,jpeg',
-            'status'            => 'required',
         ], [
             'name.required'     => 'This field is Required',
             'email.required'    => 'This field is Required',
@@ -164,7 +163,6 @@ class AdminController extends Controller
             'address.required'  => 'This field is Required',
             'image.image'       => 'Please choose a image file',
             'image.mimes'       => 'Please choose a png, jpg or jpeg File',
-            'status.required'   => 'This field is Required',
         ]);
 
         $userd = User::find($id);
@@ -189,7 +187,6 @@ class AdminController extends Controller
             'phone'             => $request->phone,
             'gender'            => $request->gender,
             'address'           => $request->address,
-            'status'            => $request->status,
             'updated_by'        => auth()->id(),
         ]);
 

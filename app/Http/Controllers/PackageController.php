@@ -121,18 +121,15 @@ class PackageController extends Controller
         $request->validate([
             'name'              => 'required',
             'amount'            => 'required | integer',
-            'status'            => 'required',
         ], [
             'name.required'     => 'This field is required',
             'amount.required'   => 'This field is required',
             'amount.integer'    => 'Please enter a integer number',
-            'status.required'   => 'This field is required',
         ]);
 
         Package::find($id)->update([
             'name'              => $request->name,
             'amount'            => $request->amount,
-            'status'            => $request->status,
             'updated_at'        => Carbon::now(),
         ]);
 
