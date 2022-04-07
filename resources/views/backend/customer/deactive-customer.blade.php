@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    
+
                     <h1 class="title text-center text-primary">Customer List</h1>
 
                     @if (session('success'))
@@ -15,7 +15,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     <div class="table-wrap">
                         <table style="min-width: 2000px !important" class="table table-bordered table-responsive-xl text-center">
                             <thead>

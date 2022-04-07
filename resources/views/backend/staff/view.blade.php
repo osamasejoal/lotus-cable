@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    
+
                     <h1 class="title text-center text-primary">Staff List</h1>
 
                     @if (session('success'))
@@ -15,7 +15,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     <div class="table-wrap">
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
@@ -63,7 +63,7 @@
                                              {{ App\Models\User::find($staff->updated_by)->name }}
                                             @endif
                                         </td>
-                                        
+
                                         <td>
                                             @if ($staff->status == 1)
                                                 <a href="{{route('staff.status', $staff->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -84,7 +84,7 @@
                         <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
+
 
                 <div class="form-field col-lg-12">
                     <label class="label" for="web_address">Web Address *</label>

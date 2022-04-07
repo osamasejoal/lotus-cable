@@ -1,4 +1,4 @@
-@extends('layouts.auth-master')
+@extends('auth.layouts.master')
 
 @section('auth-content')
     <div class="page-center">

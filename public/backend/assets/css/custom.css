@@ -1,0 +1,26 @@
+/*
+|--------------------------------------------------------------------------
+|     SIDEBAR CSS START
+|--------------------------------------------------------------------------
+*/
+.side-menu .side-menu-list .active-single{
+    background-color: #ac6bec;
+}
+.side-menu .side-menu-list .active-single a>span{
+    color: #fff;
+}
+.side-menu .side-menu-list .active-single a>i{
+    color: #fff;
+}
+.side-menu .side-menu-list .opened .active{
+    background-color: #ac6bec;
+}
+.side-menu .side-menu-list .opened .active a>span{
+    color: #fff;
+}
+
+/*
+|--------------------------------------------------------------------------
+|     SIDEBAR CSS END
+|--------------------------------------------------------------------------
+*/

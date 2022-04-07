@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
     <section style="margin-top: 10px" id="main-content" class="get-in-touch text-center">

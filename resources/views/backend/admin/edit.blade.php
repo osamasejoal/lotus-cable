@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -25,14 +25,14 @@
                 <div class="form-field col-lg-6">
                     <label class="label" for="name">Name</label>
                     <input value="{{$admin->name}}" name="name" id="name" class="input-text js-input" type="text">
-                    
-                    
+
+
                     @error('name')
                     <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
-                
+
+
                 <!-- Email -->
                 <div class="form-field col-lg-6">
                     <label class="label" for="email">Email</label>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -86,7 +86,7 @@
                 </div>
 
 
-                
+
 
                 <div class="form-field col-lg-6">
                     <label class="label" for="address">Address *</label>

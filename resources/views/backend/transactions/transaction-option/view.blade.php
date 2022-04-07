@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -31,7 +31,7 @@
 
                                     <tr class="alert" role="alert">
                                         <td>{{ $t_option->name }}</td>
-                                        
+
                                         <td>
                                             @if ($t_option->status == 1)
                                                 <a href="{{route('transaction.option.status', $t_option->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>

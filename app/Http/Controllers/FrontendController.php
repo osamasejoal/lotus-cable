@@ -17,6 +17,6 @@ class FrontendController extends Controller
     |--------------------------------------------------------------------------
     */
     public function frontpage(){
-        return view('frontend.front-page');
+        return view('frontend.index');
     }
 }

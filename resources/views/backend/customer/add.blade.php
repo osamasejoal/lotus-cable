@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.master')
 
 @section('main-content')
 
@@ -29,14 +29,14 @@
                         <option value="{{$area->id}}">{{$area->name}}</option>
                         @endforeach
                     </select>
-                    
-                    
+
+
                     @error('area_id')
                     <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
-                
+
+
                 <!-- Select Package -->
                 <div class="form-field col-lg-6">
                     <label class="label" for="package_id">Select Package *</label>
@@ -58,14 +58,14 @@
                 <div class="form-field col-lg-6">
                     <label class="label" for="name">Name *</label>
                     <input value="{{old('name')}}" name="name" id="name" class="input-text js-input" type="text">
-                    
-                    
+
+
                     @error('name')
                     <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
-                
+
+
                 <!-- Customer Email -->
                 <div class="form-field col-lg-6">
                     <label class="label" for="email">Email *</label>
@@ -88,7 +88,7 @@
                         <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
+
 
                 <!-- Customer Address -->
                 <div class="form-field col-lg-6">
@@ -140,7 +140,7 @@
                         <span class="text-danger text-left">{{ $message }}</span>
                     @enderror
                 </div>
-                
+
 
                 <div class="form-field col-lg-12">
                     <button class="submit-btn" type="submit">Create</button>
