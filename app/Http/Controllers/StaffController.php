@@ -21,9 +21,11 @@ class StaffController extends Controller
 
 
 
-    //======================================
-    // INDEX method for view Staff List
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $staffs = User::where('type', '2')->get();
@@ -34,9 +36,11 @@ class StaffController extends Controller
 
 
 
-    //============================================
-    // updateStatus method for update Staff status
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $staffs_id = User::find($id)->staff_id;
@@ -69,9 +73,11 @@ class StaffController extends Controller
 
 
 
-    //======================================
-    // CREATE method for create Staff account
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         $areas = Area::all();
@@ -82,9 +88,11 @@ class StaffController extends Controller
 
 
 
-    //======================================
-    // STORE method for create Staff account
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
 
@@ -157,9 +165,11 @@ class StaffController extends Controller
 
 
 
-    //=====================================
-    // EDIT method for update Staff account
-    //=====================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $staff = User::find($id);
@@ -170,9 +180,11 @@ class StaffController extends Controller
 
 
 
-    //========================================
-    // UPDATE method for update Staff account
-    //========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
 
@@ -241,9 +253,11 @@ class StaffController extends Controller
 
 
 
-    //========================================
-    // DESTROY method for delete Staff account
-    //========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         $staffs_id = User::find($id)->staff_id;

@@ -13,9 +13,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //=======================================
-    // INDEX method for view Transaction Type
-    //=======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $trans_types = TransactionType::all();
@@ -26,9 +28,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //=======================================================
-    // updateStatus method for update Transaction Type status
-    //=======================================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $status = TransactionType::find($id)->status;
@@ -50,9 +54,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //==========================================
-    // CREATE method for create Transaction Type
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         return view('backend.transactions.transaction-type.add');
@@ -62,9 +68,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //=========================================
-    // STORE method for create Transaction Type
-    //=========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -99,9 +107,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //=======================================
-    // EDIT method for edit Transaction Type
-    //=======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $trans_type = TransactionType::find($id);
@@ -112,9 +122,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //========================================
-    // UPDATE method for edit Transaction Type
-    //========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -139,9 +151,11 @@ class TransactionTypeController extends Controller
 
 
 
-    //===========================================
-    // DESTROY method for dekete Transaction Type
-    //===========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         TransactionType::find($id)->delete();

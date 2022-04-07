@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/main.css">
 
-            
+
 
 
     <!--
@@ -36,7 +36,7 @@
     -->
     <link rel="stylesheet" href="{{ asset('backend/form/style.css') }}">
 
-            
+
 
 
     <!--
@@ -46,7 +46,7 @@
     -->
     {{-- <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'> --}}
-    
+
 
     @yield('main-style-content')
 </head>
@@ -575,7 +575,7 @@
         <ul class="side-menu-list">
 
             <!-- Dashboard -->
-            <li class="grey">
+            <li class="grey {{ request()->routeIs('dashboard') ? 'opened' : '' }}">
                 <a href="{{ route('dashboard') }}">
                     <i class="font-icon font-icon-dashboard"></i>
                     <span class="lbl">Dashboard</span>
@@ -592,12 +592,13 @@
                 <ul>
 
                     <!-- Create all types of account -->
-                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Add New Users</span></a>
-                    
-                    <!-- Admin -->
+                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Add New
+                                Users</span></a>
+
+                        <!-- Admin -->
                     <li><a href="{{ route('admin.index') }}"><span class="lbl">Admin</span></a>
 
-                    <!-- Staffs -->
+                        <!-- Staffs -->
                     <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff</span></a>
                     </li>
 
@@ -607,9 +608,12 @@
                             <span class="lbl">Customer</span>
                         </span>
                         <ul>
-                            <li><a href="{{route('admin.index')}}"><span class="lbl">All Customer</span></a></li>
-                            <li><a href="{{route('active.customer')}}"><span class="lbl">Active Customer</span></a></li>
-                            <li><a href="{{route('deactive.customer')}}"><span class="lbl">Deactive Customer</span></a></li>
+                            <li><a href="{{ route('customer.index') }}"><span class="lbl">All
+                                        Customer</span></a></li>
+                            <li><a href="{{ route('active.customer') }}"><span class="lbl">Active
+                                        Customer</span></a></li>
+                            <li><a href="{{ route('deactive.customer') }}"><span class="lbl">Deactive
+                                        Customer</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -617,23 +621,23 @@
 
 
             <!-- Bill Generate -->
-            <li class="purple with-sub">
+            <li class="grey with-sub">
                 <span>
-                    <i class="font-icon fa fa-area-chart"></i>
+                    <i class="font-icon fa fa-calculator"></i>
                     <span class="lbl">Bill Generate</span>
                 </span>
                 <ul>
                     <li><a href="#"><span class="lbl">Add New Bill</span></a></li>
-                    <li><a href="#"><span class="lbl">Generate Monthly Bill</span></a></li>
+                    <li><a href="{{route('monthly.bill.generate')}}"><span class="lbl">Generate Monthly Bill</span></a></li>
                 </ul>
             </li>
 
 
             <!-- Bill Payment -->
-            <li class="purple with-sub">
+            <li class="grey with-sub">
                 <span>
-                    <i class="font-icon fa fa-area-chart"></i>
-                    <span class="lbl">Bill Generate</span>
+                    <i class="font-icon fa fa-credit-card"></i>
+                    <span class="lbl">Bill Payment</span>
                 </span>
                 <ul>
                     <li><a href="#"><span class="lbl">Monthly Payment</span></a></li>
@@ -642,9 +646,9 @@
 
 
             <!-- Bill Transaction -->
-            <li class="purple with-sub">
+            <li class="grey with-sub">
                 <span>
-                    <i class="font-icon fa fa-area-chart"></i>
+                    <i class="font-icon fa fa-university"></i>
                     <span class="lbl">Bill Transaction</span>
                 </span>
                 <ul>
@@ -655,9 +659,9 @@
 
 
             <!-- Bill Report -->
-            <li class="purple with-sub">
+            <li class="grey with-sub">
                 <span>
-                    <i class="font-icon fa fa-area-chart"></i>
+                    <i class="font-icon fa fa-flag"></i>
                     <span class="lbl">Bill Report</span>
                 </span>
                 <ul>
@@ -669,168 +673,62 @@
 
 
             <!-- Settings -->
-            <li class="grey with-sub">
+            <li
+                class="grey with-sub 
+                {{ request()->routeIs('area.index') ? 'opened' : '' }} 
+                {{ request()->routeIs('package.index') ? 'opened' : '' }} 
+                {{ request()->routeIs('transaction-option.index') ? 'opened' : '' }} 
+                {{ request()->routeIs('transaction-type.index') ? 'opened' : '' }}">
                 <span>
-                    <i class="font-icon font-icon-users"></i>
+                    <i class="font-icon fa fa-cog"></i>
                     <span class="lbl">Settings</span>
                 </span>
                 <ul>
 
-                    <!-- Create all types of account -->
-                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Add New Users</span></a>
-                    
-                    <!-- Admin -->
-                    <li><a href="{{ route('admin.index') }}"><span class="lbl">Admin</span></a>
-
-                    <!-- Staffs -->
-                    <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff</span></a>
+                    <!-- Area -->
+                    <li>
+                        <a href="{{ route('area.index') }}"><span class="lbl">Area</span></a>
                     </li>
 
-                    <!-- Customers -->
-                    <li class="with-sub">
-                        <span>
-                            <span class="lbl">Customer</span>
-                        </span>
-                        <ul>
-                            <li><a href="{{route('admin.index')}}"><span class="lbl">All Customer</span></a></li>
-                            <li><a href="{{route('staff.index')}}"><span class="lbl">Active Customer</span></a></li>
-                            <li><a href="{{route('customer.index')}}"><span class="lbl">Deactive Customer</span></a></li>
-                        </ul>
+                    <!-- Package -->
+                    <li>
+                        <a href="{{ route('package.index') }}"><span class="lbl">Package List</span></a>
                     </li>
+
+                    <!-- Transaction Option -->
+                    <li>
+                        <a href="{{ route('transaction-option.index') }}"><span class="lbl">View
+                                Transaction Option</span></a>
+                    </li>
+
+                    <!-- Transaction Type -->
+                    <li>
+                        <a href="{{ route('transaction-type.index') }}"><span class="lbl">View
+                                Transaction Type</span></a>
+                    </li>
+
+
                 </ul>
             </li>
 
 
-
-
-
-
-
-
-
-
-            <!-- Accounts -->
-            <li class="red with-sub">
-                <span>
-                    <i class="font-icon font-icon-user"></i>
-                    <span class="lbl">Accounts</span>
-                </span>
-                <ul>
-                    <li><a href="{{ route('profile.create') }}"><span class="lbl">Create Account</span></a>
-                    </li>
-                    <li class="with-sub">
-                        <span>
-                            <span class="lbl">All Accounts</span>
-                        </span>
-                        <ul>
-                            <li><a href="{{route('admin.index')}}"><span class="lbl">Admin</span></a></li>
-                            <li><a href="{{route('staff.index')}}"><span class="lbl">Staff</span></a></li>
-                            <li><a href="{{route('customer.index')}}"><span class="lbl">Customer</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-
-
-            <!-- Area -->
-            <li class="purple with-sub">
-                <span>
-                    <i class="font-icon fa fa-area-chart"></i>
-                    <span class="lbl">Area</span>
-                </span>
-                <ul>
-                    <li><a href="{{ route('area.create') }}"><span class="lbl">Create Area</span></a></li>
-                    <li><a href="{{ route('area.index') }}"><span class="lbl">Area List</span></a></li>
-                </ul>
-            </li>
-
-            <!-- Package -->
-            <li class="purple with-sub">
-                <span>
-                    <i class="font-icon fa fa-balance-scale"></i>
-                    <span class="lbl">Package</span>
-                </span>
-                <ul>
-                    <li><a href="{{ route('package.create') }}"><span class="lbl">Create Package</span></a>
-                    </li>
-                    <li><a href="{{ route('package.index') }}"><span class="lbl">Package List</span></a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Staff -->
-            <li class="purple with-sub">
-                <span>
-                    <i class="font-icon fa fa-user-plus"></i>
-                    <span class="lbl">Staff</span>
-                </span>
-                <ul>
-                    <li><a href="{{ route('staff.create') }}"><span class="lbl">Create Staff</span></a>
-                    </li>
-                    <li><a href="{{ route('staff.index') }}"><span class="lbl">Staff List</span></a></li>
-                </ul>
-            </li>
-
-            <!-- Customer -->
-            <li class="purple with-sub">
-                <span>
-                    <i class="font-icon fa fa-users"></i>
-                    <span class="lbl">Customer</span>
-                </span>
-                <ul>
-                    <li><a href="{{ route('customer.create') }}"><span class="lbl">Create
-                                Customer</span></a></li>
-                    <li><a href="{{ route('customer.index') }}"><span class="lbl">Customer List</span></a>
-                    </li>
-                </ul>
-            </li>
-
-
-            <!-- Company Profile -->
-            <li class="red">
+            <!-- Company Info -->
+            <li class="grey {{ request()->routeIs('company.profile') ? 'opened' : '' }}">
                 <a href="{{ route('company.profile') }}">
                     <i class="font-icon fa fa-building"></i>
-                    <span class="lbl">Company Profile</span>
+                    <span class="lbl">Company Info</span>
                 </a>
             </li>
 
 
-            <!-- Transaction -->
-            <li class="purple with-sub">
-                <span>
-                    <span class="font-icon fa fa-credit-card"></span>
-                    <span class="lbl">Transaction</span>
-                </span>
-                <ul>
+            {{-- <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                <a href="{{ url('/home') }}">
+                    <i class="menu-icon fa fa-tachometer"></i>
+                    <span class="menu-text"> Dashboard special </span>
+                </a>
 
-                    <!-- Transaction Option -->
-                    <li class="with-sub">
-                        <span>
-                            <span class="lbl">Transaction Option</span>
-                        </span>
-                        <ul>
-                            <li><a href="{{ route('transaction-option.create') }}"><span
-                                        class="lbl">Create Transaction Option</span></a></li>
-                            <li><a href="{{ route('transaction-option.index') }}"><span class="lbl">View
-                                        Transaction Option</span></a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Transaction Type -->
-                    <li class="with-sub">
-                        <span>
-                            <span class="lbl">Transaction Type</span>
-                        </span>
-                        <ul>
-                            <li><a href="{{ route('transaction-type.create') }}"><span class="lbl">Create
-                                        Transaction Type</span></a></li>
-                            <li><a href="{{ route('transaction-type.index') }}"><span class="lbl">View
-                                        Transaction Type</span></a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
+                <b class="arrow"></b>
+            </li> --}}
 
 
             <!-- Demo for need -->
@@ -1044,7 +942,7 @@
     <script>
         $(document).ready(function() {
 
-            
+
 
 
             /*
@@ -1060,13 +958,11 @@
                     $("#admin-form").show();
                     $("#staff-form").hide();
                     $("#customer-form").hide();
-                }
-                else if (var2 == 2) {
+                } else if (var2 == 2) {
                     $("#staff-form").show();
                     $("#admin-form").hide();
                     $("#customer-form").hide();
-                }
-                else{
+                } else {
                     $("#customer-form").show();
                     $("#admin-form").hide();
                     $("#staff-form").hide();
@@ -1074,7 +970,7 @@
 
 
             });
-            
+
 
 
 
@@ -1184,7 +1080,7 @@
         });
     </script>
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
-       
+
 
 
 
@@ -1194,7 +1090,7 @@
     |--------------------------------------------------------------------------
     -->
     {{-- <script src="{{ asset('backend/table/js/main.js') }}"></script> --}}
-     
+
 
     @yield('main-script-content')
 

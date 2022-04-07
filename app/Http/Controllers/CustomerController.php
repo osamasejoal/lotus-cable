@@ -10,8 +10,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CustomerMail;
 
 class CustomerController extends Controller
 {
@@ -19,9 +20,11 @@ class CustomerController extends Controller
 
 
 
-    //======================================
-    // INDEX method for view Customer List
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $customers = User::where('type', '3')->get();
@@ -32,9 +35,11 @@ class CustomerController extends Controller
 
 
 
-    //============================================
-    // updateStatus method for update Customer status
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $customers_id = User::find($id)->customer_id;
@@ -66,9 +71,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // CREATE method for create customer account
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         $areas = Area::all();
@@ -79,9 +86,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // STORE method for create customer account
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -140,7 +149,7 @@ class CustomerController extends Controller
 
 
 
-        // Mail::to($request->email)->send(new StaffMail($customer_password, $customer_n, $customer_e));
+        Mail::to($request->email)->send(new CustomerMail($customer_password, $customer_n, $customer_e));
 
         return back()->with('success', 'Successfully create Customer Account');
     }
@@ -168,9 +177,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // EDIT method for edit customer account
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $customers_id = User::find($id)->customer_id;
@@ -185,9 +196,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // UPDATE method for edit customer account
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -263,9 +276,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // DESTROY method for delete customer account
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         $customers_id = User::find($id)->customer_id;
@@ -280,9 +295,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // ACTIVE CUSTOMER METHOD
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          ACTIVE CUSTOMER METHOD
+    |--------------------------------------------------------------------------
+    */
     public function activeCustomer(){
         $customers = User::where('type', '3')->where('status', '1')->get();
         return view('backend.customer.active-customer', compact('customers'));
@@ -291,9 +308,11 @@ class CustomerController extends Controller
 
 
 
-    //==========================================
-    // DEACTIVE CUSTOMER METHOD
-    //==========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                            DEACTIVE CUSTOMER METHOD
+    |--------------------------------------------------------------------------
+    */
     public function deactiveCustomer(){
         $customers = User::where('type', '3')->where('status', '0')->get();
         return view('backend.customer.deactive-customer', compact('customers'));

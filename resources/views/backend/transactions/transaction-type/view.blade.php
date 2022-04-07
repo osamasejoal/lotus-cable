@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <section style="margin-top: -100px" class="ftco-section">
+    <section class="ftco-section">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -15,7 +15,7 @@
                     @endif
 
                     <div class="table-wrap">
-                        <table class="table table-responsive-xl text-center">
+                        <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -39,7 +39,7 @@
                                             @endif
                                         </td>
 
-                                        <td class="col-2">
+                                        <td>
                                             <a href="{{ route('transaction-type.edit', $t_type->id) }}"
                                                 class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
 

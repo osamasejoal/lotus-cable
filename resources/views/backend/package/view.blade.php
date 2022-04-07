@@ -1,25 +1,7 @@
 @extends('layouts.app')
 
-
-@section('main-style-content')
-    {{-- Style for Table --}}
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
-
-    <link rel="stylesheet" href="{{ asset('backend/table/css/style.css') }}">
-    {{-- END Style for Table --}}
-
-    <!-- Style for Status Toggle -->
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
-        rel="stylesheet">
-    <!-- END Style for Status Toggle -->
-@endsection
-
-
-
 @section('main-content')
-    <section style="margin-top: -100px" class="ftco-section">
+    <section class="ftco-section">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -33,7 +15,7 @@
                     @endif
 
                     <div class="table-wrap">
-                        <table class="table table-responsive-xl text-center">
+                        <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -59,7 +41,7 @@
                                         </td>
 
 
-                                        <td class="col-2">
+                                        <td>
                                             <a href="{{ route('package.edit', $package->id) }}"
                                                 class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
 

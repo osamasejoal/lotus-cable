@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
-use App\Models\Package;
+use App\Models\Bill;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class ProfileController extends Controller
+class BillController extends Controller
 {
 
 
 
 
-
+    
     /*
     |--------------------------------------------------------------------------
     |                              INDEX METHOD
@@ -21,7 +19,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        
+        //
     }
 
 
@@ -35,9 +33,7 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        $areas = Area::all();
-        $packages = Package::all();
-        return view('backend.profile.create-account', compact('areas', 'packages'));
+        //
     }
 
 
@@ -59,7 +55,7 @@ class ProfileController extends Controller
 
 
 
-    public function show($id)
+    public function show(Bill $bill)
     {
         //
     }
@@ -73,7 +69,7 @@ class ProfileController extends Controller
     |                              EDIT METHOD
     |--------------------------------------------------------------------------
     */
-    public function edit($id)
+    public function edit(Bill $bill)
     {
         //
     }
@@ -87,7 +83,7 @@ class ProfileController extends Controller
     |                              UPDATE METHOD
     |--------------------------------------------------------------------------
     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bill $bill)
     {
         //
     }
@@ -95,13 +91,13 @@ class ProfileController extends Controller
 
 
 
-    
+
     /*
     |--------------------------------------------------------------------------
     |                              DESTROY METHOD
     |--------------------------------------------------------------------------
     */
-    public function destroy($id)
+    public function destroy(Bill $bill)
     {
         //
     }

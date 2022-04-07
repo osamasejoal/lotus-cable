@@ -13,9 +13,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //=========================================
-    // INDEX method for view transaction option
-    //=========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $trans_options = TransactionOption::all();
@@ -26,9 +28,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //=========================================================
-    // updateStatus method for update Transaction Option status
-    //=========================================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $status = TransactionOption::find($id)->status;
@@ -50,9 +54,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //============================================
-    // CREATE method for create transaction option
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         return view('backend.transactions.transaction-option.add');
@@ -62,9 +68,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //============================================
-    // STORE method for create transaction option
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -95,9 +103,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //============================================
-    // EDIT method for edit transaction option
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $trans_option = TransactionOption::find($id);
@@ -108,9 +118,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //============================================
-    // UPDATE method for edit transaction option
-    //============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -131,9 +143,11 @@ class TransactionOptionController extends Controller
 
 
 
-    //=============================================
-    // DESTROY method for delete transaction option
-    //=============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         TransactionOption::find($id)->delete();

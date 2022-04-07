@@ -13,9 +13,11 @@ class AreaController extends Controller
 
 
 
-    //======================================
-    // INDEX method for view Staff List
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $areas = Area::all();
@@ -26,9 +28,11 @@ class AreaController extends Controller
 
 
 
-    //===========================================
-    // updateStatus method for update Area status
-    //===========================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $status = Area::find($id)->status;
@@ -50,9 +54,11 @@ class AreaController extends Controller
 
 
 
-    //==============================
-    // CREATE method for create area
-    //==============================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         return view('backend.area.add');
@@ -62,9 +68,11 @@ class AreaController extends Controller
 
 
 
-    //==============================
-    // STORE method for create area
-    //==============================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -95,9 +103,11 @@ class AreaController extends Controller
 
 
 
-    //===============================
-    // EDIT method for edit area List
-    //===============================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $area = Area::find($id);
@@ -108,9 +118,11 @@ class AreaController extends Controller
 
 
 
-    //=================================
-    // UPDATE method for edit area List
-    //=================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -131,9 +143,11 @@ class AreaController extends Controller
 
 
 
-    //======================================
-    // DESTROY method for dekete Area List
-    //======================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         Area::find($id)->delete();

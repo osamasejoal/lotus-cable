@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminMail;
 
 class AdminController extends Controller
 {
@@ -109,7 +111,7 @@ class AdminController extends Controller
 
 
 
-        // Mail::to($request->email)->send(new StaffMail($staff_password, $staff_n, $request->email));
+        Mail::to($request->email)->send(new AdminMail($admin_password, $admin_n, $admin_e));
 
         return back()->with('success', 'Successfully created Admin Account');
     }

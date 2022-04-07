@@ -13,9 +13,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // INDEX method for view Package List
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $packages = Package::all();
@@ -26,9 +28,11 @@ class PackageController extends Controller
 
 
 
-    //==============================================
-    // updateStatus method for update Package status
-    //==============================================
+    /*
+    |--------------------------------------------------------------------------
+    |                          UPDATESTATUS METHOD
+    |--------------------------------------------------------------------------
+    */
     public function updateStatus($id)
     {
         $status = Package::find($id)->status;
@@ -50,9 +54,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // CREATE method for create Package
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              CREATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         return view('backend.package.add');
@@ -62,9 +68,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // STORE method for create Package
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              STORE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -100,9 +108,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // EDIT method for edit Package
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              EDIT METHOD
+    |--------------------------------------------------------------------------
+    */
     public function edit($id)
     {
         $package = Package::find($id);
@@ -113,9 +123,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // UPDATE method for edit Package
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -140,9 +152,11 @@ class PackageController extends Controller
 
 
 
-    //===================================
-    // DESTROY method for delete Package
-    //===================================
+    /*
+    |--------------------------------------------------------------------------
+    |                              DESTROY METHOD
+    |--------------------------------------------------------------------------
+    */
     public function destroy($id)
     {
         Package::find($id)->delete();

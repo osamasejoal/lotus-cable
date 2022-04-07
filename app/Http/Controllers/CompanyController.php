@@ -10,11 +10,29 @@ use Illuminate\Support\Carbon;
 
 class CompanyController extends Controller
 {
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                              INDEX METHOD
+    |--------------------------------------------------------------------------
+    */
     public function index(){
         $company = Company::first();
         return view('backend.company.view', compact('company'));
     }
 
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                              UPDATE METHOD
+    |--------------------------------------------------------------------------
+    */
     public function update(Request $request){
 
         $request->validate([
