@@ -27,8 +27,8 @@ class CreateBillsTable extends Migration
             $table->integer('discount');
             $table->integer('paid_amount');
             $table->date('bill_generate_date');
-            $table->date('payment_date');
-            $table->integer('status');
+            $table->date('payment_date')->nullable();
+            $table->integer('status')->default('1')->comment('1 = Active; 0 = Deactive;');
             $table->timestamps();
         });
     }

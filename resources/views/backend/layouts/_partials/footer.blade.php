@@ -283,16 +283,6 @@
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
 
 
-
-
-    <!--
-    |--------------------------------------------------------------------------
-    |                           TABLE JS
-    |--------------------------------------------------------------------------
-    -->
-    {{-- <script src="{{ asset('backend/table/js/main.js') }}"></script> --}}
-
-
     @yield('main-script-content')
 
 

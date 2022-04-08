@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Area;
+use App\Models\Bill;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Session;
 
@@ -29,11 +30,11 @@ class BillGenerateController extends Controller
 
         return view('backend.bill-generate.generate-monthly-bill', compact('areas', 'year', 'month', 'area_id', 'customers'));
     }
-
-
-
-
-
+    
+    
+    
+    
+    
     /*
     |--------------------------------------------------------------------------
     |                 SEARCH FOR GENERATE MONTHLY BILL METHOD
@@ -50,24 +51,41 @@ class BillGenerateController extends Controller
             'month.required' => 'This field is Required',
             'area.required'  => 'This field is Required',
         ]);
-
+        
         if (!empty($request->year && $request->month && $request->area)) {
-
+            
             $year       = $request->year;
             $month      = $request->month;
             $area_id    = $request->area;
-
+            
             $areas      = Area::all();
             $customers  = Customer::where('area_id', $area_id)->get();
-
+            
             return view('backend.bill-generate.generate-monthly-bill', compact('year', 'month', 'area_id', 'areas', 'customers'));
         }
         else{
             return back();
         }
     }
+    
+    
+    
+    
+    /*
+    |--------------------------------------------------------------------------
+    |                       INSERT MONTHLY BILL METHOD
+    |--------------------------------------------------------------------------
+    */
+    public function insertMonthlyBill(Request $request)
+    {
+        foreach ($request->check as $customers_id) {
 
+            $customer_id = Customer::find($customers_id);
 
+            Bill::insert([
 
-
+            ]);
+        }
+        // return back();
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{HomeController, FrontendController, AdminController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController, BillGenerateController};
+use App\Http\Controllers\{HomeController, FrontendController, AdminController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController, BillController, BillGenerateController};
 
 
 Auth::routes();
@@ -121,8 +121,19 @@ Route::get('/update/transaction/type/status/{id}', [TransactionTypeController::c
 
 /*
 |--------------------------------------------------------------------------
+|                          BILL CONTROLLER
+|--------------------------------------------------------------------------
+*/
+Route::resource('bills', BillController::class);
+
+
+
+/*
+|--------------------------------------------------------------------------
 |                          BILL GENERATE CONTROLLER
 |--------------------------------------------------------------------------
 */
 Route::get('/generate/monthly/bill', [BillGenerateController::class, 'gMonthlyBill'])->name('monthly.bill.generate');
-Route::post('/search/monthly/bill', [BillGenerateController::class, 'searchForBill'])->name('search.monthly.bill');
+Route::get('/search/monthly/bill', [BillGenerateController::class, 'searchForBill'])->name('search.monthly.bill');
+Route::post('/insert/monthly/bill', [BillGenerateController::class, 'insertMonthlyBill'])->name('insert.monthly.bill');
+
