@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <h1 class="title text-center text-primary">Customer List</h1>
+                    <h1 class="title text-center text-primary">Deactive Customer</h1>
 
                     @if (session('success'))
                         <div class="alert alert-success text-center col-12 mt-4">

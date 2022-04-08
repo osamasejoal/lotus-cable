@@ -19,7 +19,7 @@ class CreateBillsTable extends Migration
             $table->integer('staff_id');
             $table->integer('area_id');
             $table->integer('package_id');
-            $table->integer('transaction_option_id');
+            $table->integer('transaction_option_id')->nullable();
             $table->integer('transaction_type_id');
             $table->integer('year');
             $table->integer('month');

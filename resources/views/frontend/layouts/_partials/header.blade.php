@@ -41,7 +41,7 @@
                     <div class="pull-left">
                         <ul class="info">
                             <li><a href="tel:+6789-875-2235"><span class="icon flaticon-maps-and-flags"></span>Call:
-                                    +6789-875-2235</a></li>
+                                    {{ $company_info->phone }}</a></li>
                             <li><a href="mailto:Info.domain@info.com"><span
                                         class="icon flaticon-email-2"></span>Info.domain@info.com</a></li>
                         </ul>

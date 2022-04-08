@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Bill;
 use App\Models\Customer;
+use App\Models\Package;
+use App\Models\Staff;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class BillGenerateController extends Controller
@@ -30,11 +33,11 @@ class BillGenerateController extends Controller
 
         return view('backend.bill-generate.generate-monthly-bill', compact('areas', 'year', 'month', 'area_id', 'customers'));
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     |                 SEARCH FOR GENERATE MONTHLY BILL METHOD
@@ -51,26 +54,25 @@ class BillGenerateController extends Controller
             'month.required' => 'This field is Required',
             'area.required'  => 'This field is Required',
         ]);
-        
+
         if (!empty($request->year && $request->month && $request->area)) {
-            
+
             $year       = $request->year;
             $month      = $request->month;
             $area_id    = $request->area;
-            
+
             $areas      = Area::all();
             $customers  = Customer::where('area_id', $area_id)->get();
-            
+
             return view('backend.bill-generate.generate-monthly-bill', compact('year', 'month', 'area_id', 'areas', 'customers'));
-        }
-        else{
+        } else {
             return back();
         }
     }
-    
-    
-    
-    
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     |                       INSERT MONTHLY BILL METHOD
@@ -78,14 +80,35 @@ class BillGenerateController extends Controller
     */
     public function insertMonthlyBill(Request $request)
     {
-        foreach ($request->check as $customers_id) {
+        if (!empty($request->year && $request->month && $request->check)) {
 
-            $customer_id = Customer::find($customers_id);
+            foreach ($request->check as $customers_id) {
 
-            Bill::insert([
+                $customer = Customer::find($customers_id);
+                $staff = Staff::where('area_id', $customer->area_id)->get();
+                $package = Package::find($customer->package_id);
 
-            ]);
+                Bill::insert([
+                    'customer_id' => $customers_id,
+                    'staff_id' => $staff->id,
+                    'area_id' => $customer->area_id,
+                    'package_id' => $package->id,
+                    'transaction_type_id' => 1,
+                    'year' => $request->year,
+                    'month' => $request->month,
+                    'month_wise_amount' => $package->amount,
+                    'discount' => 0,
+                    'paid_amount' => 0,
+                    'bill_generate_date' => Carbon::now()->toDateString(),
+                ]);
+
+            }
+
+        } else {
+            return back();
         }
-        // return back();
+        
+
+        
     }
 }

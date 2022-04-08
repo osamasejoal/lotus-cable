@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -17,6 +18,7 @@ class FrontendController extends Controller
     |--------------------------------------------------------------------------
     */
     public function frontpage(){
-        return view('frontend.index');
+        $company_info = Company::first();
+        return view('frontend.index', compact('company_info'));
     }
 }

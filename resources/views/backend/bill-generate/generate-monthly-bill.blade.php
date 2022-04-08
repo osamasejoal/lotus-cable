@@ -87,7 +87,7 @@
             -->
         @if ($year != null || $month != null || $area_id != null)
 
-            <form action="{{route('insert.monthly.bill')}}" method="POST">
+            <form action="{{route('insert.monthly.bill', $year, $month)}}" method="POST">
                 @csrf
 
                 <div class="generate-unpaid-bill text-right mb-3">
@@ -112,8 +112,12 @@
                             @foreach ($customers as $customer)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $year }}</td>
-                                    <td>{{ $month }}</td>
+                                    <td>
+                                        <input class="text-center" style="border:none;width:60px" type="text" name="year" value="{{$year}}">
+                                    </td>
+                                    <td>
+                                        <input class="text-center" style="border:none;width:70px" type="text" name="month" value="{{$month}}">
+                                    </td>
                                     <td>{{ App\Models\Area::find($area_id)->name }}</td>
                                     <td>{{ $customer->customer_id }}</td>
                                     <td>{{ $customer->name }}</td>
