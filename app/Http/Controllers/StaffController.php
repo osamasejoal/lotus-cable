@@ -28,7 +28,7 @@ class StaffController extends Controller
     */
     public function index()
     {
-        $staffs = User::where('type', '2')->get();
+        $staffs     = User::where('type', '2')->get();
         return view('backend.staff.view', compact('staffs'));
     }
 
@@ -43,25 +43,25 @@ class StaffController extends Controller
     */
     public function updateStatus($id)
     {
-        $staffs_id = User::find($id)->staff_id;
-        $status = User::find($id)->status;
+        $staffs_id  = User::find($id)->staff_id;
+        $status     = User::find($id)->status;
 
         if ($status == 1) {
 
             User::find($id)->update([
-                'status' => 0,
+                'status'    => 0,
             ]);
             Staff::find($staffs_id)->update([
-                'status' => 0,
+                'status'    => 0,
             ]);
 
         } elseif ($status == 0) {
 
             User::find($id)->update([
-                'status' => 1,
+                'status'    => 1,
             ]);
             Staff::find($staffs_id)->update([
-                'status' => 1,
+                'status'    => 1,
             ]);
             
         }
@@ -116,9 +116,10 @@ class StaffController extends Controller
             'image.mimes'       => 'Please choose a png, jpg or jpeg File',
         ]);
 
-        $staff_password = Str::random('8');
-        $staff_n  = $request->name;
-        $staff_e = $request->email;
+        // $staff_password  = Str::random('8');
+        $staff_password     = 12345678;
+        $staff_n            = $request->name;
+        $staff_e            = $request->email;
 
 
         $satff_data = Staff::create([
@@ -146,7 +147,7 @@ class StaffController extends Controller
 
         
 
-        Mail::to($request->email)->send(new StaffMail($staff_password, $staff_n, $request->email));
+        // Mail::to($request->email)->send(new StaffMail($staff_password, $staff_n, $request->email));
 
         return back()->with('success', 'Successfully create Staff Account');
     }
@@ -172,7 +173,7 @@ class StaffController extends Controller
     */
     public function edit($id)
     {
-        $staff = User::find($id);
+        $staff  = User::find($id);
         return view('backend.staff.edit', compact('staff'));
     }
 
@@ -210,19 +211,21 @@ class StaffController extends Controller
         $staffs_id = User::find($id)->staff_id;
 
         if ($request->hasFile('image')) {
+
             if ($userd->image != 'default.png') {
                 unlink(base_path('public/backend/assets/images/profile-pic/' . $userd->image));
             }
-            $img = Image::make($request->image);
-            $img_name = $userd->type . $staffs_id->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
+
+            $img        = Image::make($request->image);
+            $img_name   = $userd->type . $staffs_id->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/profile-pic/' . $img_name));
 
             User::find($id)->update([
-                'image' => $img_name,
+                'image'         => $img_name,
             ]);
 
             Staff::find($staffs_id)->update([
-                'image' => $img_name,
+                'image'         => $img_name,
             ]);
         }
 

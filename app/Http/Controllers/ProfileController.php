@@ -35,8 +35,8 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        $areas = Area::all();
-        $packages = Package::all();
+        $areas      = Area::all();
+        $packages   = Package::all();
         return view('backend.profile.create-account', compact('areas', 'packages'));
     }
 

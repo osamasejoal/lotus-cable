@@ -20,7 +20,7 @@ class PackageController extends Controller
     */
     public function index()
     {
-        $packages = Package::all();
+        $packages   = Package::all();
         return view('backend.package.view', compact('packages'));
     }
 
@@ -35,7 +35,7 @@ class PackageController extends Controller
     */
     public function updateStatus($id)
     {
-        $status = Package::find($id)->status;
+        $status     = Package::find($id)->status;
 
         if ($status == 1) {
             Package::find($id)->update([

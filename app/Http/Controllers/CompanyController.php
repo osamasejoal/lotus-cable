@@ -62,28 +62,32 @@ class CompanyController extends Controller
         $company_id = Company::first();
 
         if ($request->hasFile('logo')) {
+
             if ($company_id->logo != 'default_logo.png') {
                 unlink(base_path('public/backend/assets/images/company/' . $company_id->logo));
             }
-            $img = Image::make($request->logo);
-            $img_name = $company_id->name . Str::random('5') . '.' . $request->logo->getClientOriginalExtension();
+
+            $img        = Image::make($request->logo);
+            $img_name   = $company_id->name . Str::random('5') . '.' . $request->logo->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/company/' . $img_name));
 
             Company::first()->update([
-                'logo' => $img_name,
+                'logo'  => $img_name,
             ]);
         }
 
         if ($request->hasFile('favicon')) {
+
             if ($company_id->favicon != 'default_favicon.png') {
                 unlink(base_path('public/backend/assets/images/company/' . $company_id->favicon));
             }
-            $img = Image::make($request->favicon);
-            $img_name = $company_id->name . Str::random('5') . '.' . $request->favicon->getClientOriginalExtension();
+
+            $img        = Image::make($request->favicon);
+            $img_name   = $company_id->name . Str::random('5') . '.' . $request->favicon->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/company/' . $img_name));
 
             Company::first()->update([
-                'favicon' => $img_name,
+                'favicon'       => $img_name,
             ]);
         }
 

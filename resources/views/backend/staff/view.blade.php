@@ -20,6 +20,7 @@
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
+                                    <th>Area</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -35,7 +36,7 @@
                             <tbody>
 
                                 @foreach ($staffs as $staff)
-
+                                    {{-- <td>{{ $staff->area->name }}</td> --}}
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"

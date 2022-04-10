@@ -9,7 +9,9 @@ use App\Models\Customer;
 use App\Models\Package;
 use App\Models\Staff;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class BillGenerateController extends Controller
 {
@@ -45,6 +47,7 @@ class BillGenerateController extends Controller
     */
     public function searchForBill(Request $request)
     {
+
         $request->validate([
             'year'           => 'required',
             'month'          => 'required',
@@ -65,6 +68,7 @@ class BillGenerateController extends Controller
             $customers  = Customer::where('area_id', $area_id)->get();
 
             return view('backend.bill-generate.generate-monthly-bill', compact('year', 'month', 'area_id', 'areas', 'customers'));
+
         } else {
             return back();
         }
@@ -80,27 +84,32 @@ class BillGenerateController extends Controller
     */
     public function insertMonthlyBill(Request $request)
     {
+
         if (!empty($request->year && $request->month && $request->check)) {
 
             foreach ($request->check as $customers_id) {
 
-                $customer = Customer::find($customers_id);
-                $staff = Staff::where('area_id', $customer->area_id)->get();
-                $package = Package::find($customer->package_id);
+                $customer   = Customer::find($customers_id);
+                $staff      = Staff::where('area_id', $customer->area_id)->first();
+                $package    = Package::find($customer->package_id);
 
                 Bill::insert([
-                    'customer_id' => $customers_id,
-                    'staff_id' => $staff->id,
-                    'area_id' => $customer->area_id,
-                    'package_id' => $package->id,
-                    'transaction_type_id' => 1,
-                    'year' => $request->year,
-                    'month' => $request->month,
-                    'month_wise_amount' => $package->amount,
-                    'discount' => 0,
-                    'paid_amount' => 0,
-                    'bill_generate_date' => Carbon::now()->toDateString(),
+                    'customer_id'           => $customers_id,
+                    'staff_id'              => $staff->id,
+                    'area_id'               => $customer->area_id,
+                    'package_id'            => $package->id,
+                    'transaction_type_id'   => 1,
+                    'year'                  => $request->year,
+                    'month'                 => $request->month,
+                    'month_wise_amount'     => $package->amount,
+                    'discount'              => 0,
+                    'paid_amount'           => 0,
+                    'bill_generate_date'    => Carbon::now()->toDateString(),
                 ]);
+
+                // Customer::find($customer)->update([
+                //     'due'                   => $package->amount,
+                // ]);
 
             }
 

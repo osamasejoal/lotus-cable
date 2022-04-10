@@ -35,7 +35,7 @@ class TransactionOptionController extends Controller
     */
     public function updateStatus($id)
     {
-        $status = TransactionOption::find($id)->status;
+        $status     = TransactionOption::find($id)->status;
 
         if ($status == 1) {
             TransactionOption::find($id)->update([

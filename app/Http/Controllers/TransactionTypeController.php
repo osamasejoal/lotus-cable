@@ -20,7 +20,7 @@ class TransactionTypeController extends Controller
     */
     public function index()
     {
-        $trans_types = TransactionType::all();
+        $trans_types    = TransactionType::all();
         return view('backend.transactions.transaction-type.view', compact('trans_types'));
     }
 
@@ -35,7 +35,7 @@ class TransactionTypeController extends Controller
     */
     public function updateStatus($id)
     {
-        $status = TransactionType::find($id)->status;
+        $status     = TransactionType::find($id)->status;
 
         if ($status == 1) {
             TransactionType::find($id)->update([

@@ -54,19 +54,19 @@
                         <li>
                             <span class="icon"><img
                                     src="{{ asset('frontend/assets') }}/images/icons/icon-1.png" alt="" /></span>
-                            <a href="tel:+3453-909-6565">+3453-909-6565</a><br>
-                            <a href="tel:+2390-875-223">+2390-875-223</a>
+                            <a>{{ $company_info->phone }}</a><br>
+                            {{-- <a href="tel:+2390-875-223">+2390-875-223</a> --}}
                         </li>
                         <li>
                             <span class="icon"><img
                                     src="{{ asset('frontend/assets') }}/images/icons/icon-2.png" alt="" /></span>
-                            <a href="mailto:infoname@gmail.com">infoname@gmail.com</a><br>
-                            <a href="www.yourname.html">www.yourname.com</a>
+                            <a>{{ $company_info->email }}</a><br>
+                            <a href="{{ $company_info->web_address }}">{{ $company_info->web_address }}</a>
                         </li>
                         <li>
                             <span class="icon"><img
                                     src="{{ asset('frontend/assets') }}/images/icons/icon-3.png" alt="" /></span>
-                            503 Old Buffalo Street <br> Northwest #205, New York-3087
+                            {{ $company_info->address }}
                         </li>
                     </ul>
 

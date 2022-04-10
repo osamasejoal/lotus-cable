@@ -42,11 +42,11 @@ class AdminController extends Controller
 
         if ($status == 1) {
             User::find($id)->update([
-                'status' => 0,
+                'status'    => 0,
             ]);
         } elseif ($status == 0) {
             User::find($id)->update([
-                'status' => 1,
+                'status'    => 1,
             ]);
         }
 
@@ -92,9 +92,10 @@ class AdminController extends Controller
             'address.required'  => 'This field is Required',
         ]);
 
-        $admin_password = Str::random('8');
-        $admin_n  = $request->name;
-        $admin_e = $request->email;
+        // $admin_password      = Str::random('8');
+        $admin_password         = 12345678;
+        $admin_n                = $request->name;
+        $admin_e                = $request->email;
 
 
         User::insert([
@@ -111,7 +112,7 @@ class AdminController extends Controller
 
 
 
-        Mail::to($request->email)->send(new AdminMail($admin_password, $admin_n, $admin_e));
+        // Mail::to($request->email)->send(new AdminMail($admin_password, $admin_n, $admin_e));
 
         return back()->with('success', 'Successfully created Admin Account');
     }
@@ -170,15 +171,17 @@ class AdminController extends Controller
         $userd = User::find($id);
 
         if ($request->hasFile('image')) {
+
             if ($userd->image != 'default.png') {
                 unlink(base_path('public/backend/assets/images/profile-pic/' . $userd->image));
             }
-            $img = Image::make($request->image);
-            $img_name = $userd->type . $userd->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
+
+            $img        = Image::make($request->image);
+            $img_name   = $userd->type . $userd->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/profile-pic/' . $img_name));
 
             User::find($id)->update([
-                'image' => $img_name,
+                'image'         => $img_name,
             ]);
         }
 

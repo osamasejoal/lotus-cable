@@ -42,25 +42,25 @@ class CustomerController extends Controller
     */
     public function updateStatus($id)
     {
-        $customers_id = User::find($id)->customer_id;
-        $status = User::find($id)->status;
+        $customers_id       = User::find($id)->customer_id;
+        $status             = User::find($id)->status;
 
         if ($status == 1) {
 
             User::find($id)->update([
-                'status' => 0,
+                'status'    => 0,
             ]);
             Customer::find($customers_id)->update([
-                'status' => 0,
+                'status'    => 0,
             ]);
 
         } elseif ($status == 0) {
 
             User::find($id)->update([
-                'status' => 1,
+                'status'    => 1,
             ]);
             Customer::find($customers_id)->update([
-                'status' => 1,
+                'status'    => 1,
             ]);
 
         }
@@ -78,8 +78,8 @@ class CustomerController extends Controller
     */
     public function create()
     {
-        $areas = Area::all();
-        $packages = Package::all();
+        $areas      = Area::all();
+        $packages   = Package::all();
         return view('backend.customer.add', compact('areas', 'packages'));
     }
 
@@ -116,9 +116,10 @@ class CustomerController extends Controller
             'register_date.required'    => 'This field is Required',
         ]);
 
-        $customer_password = Str::random('8');
-        $customer_n  = $request->name;
-        $customer_e = $request->email;
+        // $customer_password   = Str::random('8');
+        $customer_password      = 12345678;
+        $customer_n             = $request->name;
+        $customer_e             = $request->email;
 
 
         $customer_data = Customer::create([
@@ -149,7 +150,7 @@ class CustomerController extends Controller
 
 
 
-        Mail::to($request->email)->send(new CustomerMail($customer_password, $customer_n, $customer_e));
+        // Mail::to($request->email)->send(new CustomerMail($customer_password, $customer_n, $customer_e));
 
         return back()->with('success', 'Successfully create Customer Account');
     }
@@ -184,12 +185,12 @@ class CustomerController extends Controller
     */
     public function edit($id)
     {
-        $customers_id = User::find($id)->customer_id;
+        $customers_id   = User::find($id)->customer_id;
 
-        $customer = User::find($id);
-        $customer_data = Customer::find($customers_id);
-        $areas = Area::all();
-        $packages = Package::all();
+        $customer       = User::find($id);
+        $customer_data  = Customer::find($customers_id);
+        $areas          = Area::all();
+        $packages       = Package::all();
         return view('backend.customer.edit', compact('customer', 'customer_data', 'areas', 'packages'));
     }
 
@@ -227,23 +228,25 @@ class CustomerController extends Controller
             'image.mimes'           => 'Please choose a png, jpg or jpeg File',
         ]);
 
-        $userd = User::find($id);
-        $customers_id = User::find($id)->customer_id;
+        $userd          = User::find($id);
+        $customers_id   = User::find($id)->customer_id;
 
         if ($request->hasFile('image')) {
+
             if ($userd->image != 'default.png') {
                 unlink(base_path('public/backend/assets/images/profile-pic/' . $userd->image));
             }
-            $img = Image::make($request->image);
-            $img_name = $userd->type . $customers_id->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
+
+            $img        = Image::make($request->image);
+            $img_name   = $userd->type . $customers_id->name . Str::random('5') . '.' . $request->image->getClientOriginalExtension();
             $img->save(base_path('public/backend/assets/images/profile-pic/' . $img_name));
 
             User::find($id)->update([
-                'image' => $img_name,
+                'image'     => $img_name,
             ]);
 
             Customer::find($customers_id)->update([
-                'image' => $img_name,
+                'image'     => $img_name,
             ]);
         }
 

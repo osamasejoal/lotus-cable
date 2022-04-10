@@ -7,10 +7,10 @@
 
 
         <!--
-            |--------------------------------------------------------------------------
-            |                           SEARCH BAR
-            |--------------------------------------------------------------------------
-            -->
+                |--------------------------------------------------------------------------
+                |                           SEARCH BAR
+                |--------------------------------------------------------------------------
+                -->
         <form action="{{ route('search.monthly.bill') }}" method="get">
             @csrf
             <div class="search-bar d-flex flex-row justify-content-around" style="margin: 3rem 0 5rem 0;">
@@ -35,18 +35,18 @@
                     <select name="month" id="month"
                         style="border:none;background:transparent;border-bottom:2px solid;width:200px;margin:4px 0;">
                         <option value="">-- Month --</option>
-                        <option value="january" {{ $month == 'january' ? 'selected' : '' }}>january</option>
-                        <option value="february" {{ $month == 'february' ? 'selected' : '' }}>february</option>
-                        <option value="march" {{ $month == 'march' ? 'selected' : '' }}>march</option>
-                        <option value="april" {{ $month == 'april' ? 'selected' : '' }}>april</option>
-                        <option value="may" {{ $month == 'may' ? 'selected' : '' }}>may</option>
-                        <option value="june" {{ $month == 'june' ? 'selected' : '' }}>june</option>
-                        <option value="july" {{ $month == 'july' ? 'selected' : '' }}>july</option>
-                        <option value="august" {{ $month == 'august' ? 'selected' : '' }}>august</option>
-                        <option value="september" {{ $month == 'september' ? 'selected' : '' }}>september</option>
-                        <option value="october" {{ $month == 'october' ? 'selected' : '' }}>october</option>
-                        <option value="november" {{ $month == 'november' ? 'selected' : '' }}>november</option>
-                        <option value="december" {{ $month == 'december' ? 'selected' : '' }}>december</option>
+                        <option value="1" {{ $month == '1' ? 'selected' : '' }}>january</option>
+                        <option value="2" {{ $month == '2' ? 'selected' : '' }}>february</option>
+                        <option value="3" {{ $month == '3' ? 'selected' : '' }}>march</option>
+                        <option value="4" {{ $month == '4' ? 'selected' : '' }}>april</option>
+                        <option value="5" {{ $month == '5' ? 'selected' : '' }}>may</option>
+                        <option value="6" {{ $month == '6' ? 'selected' : '' }}>june</option>
+                        <option value="7" {{ $month == '7' ? 'selected' : '' }}>july</option>
+                        <option value="8" {{ $month == '8' ? 'selected' : '' }}>august</option>
+                        <option value="9" {{ $month == '9' ? 'selected' : '' }}>september</option>
+                        <option value="10" {{ $month == '10' ? 'selected' : '' }}>october</option>
+                        <option value="11" {{ $month == '11' ? 'selected' : '' }}>november</option>
+                        <option value="12" {{ $month == '12' ? 'selected' : '' }}>december</option>
                     </select>
 
                     @error('month')
@@ -81,13 +81,12 @@
 
 
         <!--
-            |--------------------------------------------------------------------------
-            |                          BILL GENERATE TABLE
-            |--------------------------------------------------------------------------
-            -->
+                |--------------------------------------------------------------------------
+                |                          BILL GENERATE TABLE
+                |--------------------------------------------------------------------------
+                -->
         @if ($year != null || $month != null || $area_id != null)
-
-            <form action="{{route('insert.monthly.bill', $year, $month)}}" method="POST">
+            <form action="{{ route('insert.monthly.bill', $year, $month) }}" method="POST">
                 @csrf
 
                 <div class="generate-unpaid-bill text-right mb-3">
@@ -113,16 +112,49 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
-                                        <input class="text-center" style="border:none;width:60px" type="text" name="year" value="{{$year}}">
+                                        <input class="text-center" style="border:none;width:60px" type="text" name="year"
+                                            value="{{ $year }}">
                                     </td>
                                     <td>
-                                        <input class="text-center" style="border:none;width:70px" type="text" name="month" value="{{$month}}">
+                                        @if ($month == 1)
+                                            january
+                                        @elseif($month == 2)
+                                            february
+                                        @elseif($month == 3)
+                                            march
+                                        @elseif($month == 4)
+                                            aprill
+                                        @elseif($month == 5)
+                                            may
+                                        @elseif($month == 6)
+                                            june
+                                        @elseif($month == 7)
+                                            july
+                                        @elseif($month == 8)
+                                            august
+                                        @elseif($month == 9)
+                                            september
+                                        @elseif($month == 10)
+                                            october
+                                        @elseif($month == 11)
+                                            november
+                                        @elseif($month == 12)
+                                            december
+                                        @endif
+                                        <input class="text-center" style="display:none" type="text" name="month"
+                                            value="{{ $month }}">
                                     </td>
                                     <td>{{ App\Models\Area::find($area_id)->name }}</td>
-                                    <td>{{ $customer->customer_id }}</td>
-                                    <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->phone }}</td>
-                                    <td><input type="checkbox" name="check[]" value="{{$customer->id}}"></td>
+                                    <td>
+                                        {{ $customer->customer_id }}
+                                    </td>
+                                    <td>
+                                        {{ $customer->name }}
+                                    </td>
+                                    <td>
+                                        {{ $customer->phone }}
+                                    </td>
+                                    <td><input type="checkbox" name="check[]" value="{{ $customer->id }}"></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -130,7 +162,6 @@
                 </div>
 
             </form>
-
         @endif
 
 

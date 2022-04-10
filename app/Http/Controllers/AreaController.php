@@ -76,7 +76,7 @@ class AreaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'          => 'required',
         ],[
             'name.required' => 'This field is required',
         ]);
@@ -126,14 +126,14 @@ class AreaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'      => 'required',
+            'name'              => 'required',
         ], [
             'name.required'     => 'This field is required',
         ]);
 
         Area::find($id)->update([
-            'name'          => $request->name,
-            'updated_at'    => Carbon::now(),
+            'name'              => $request->name,
+            'updated_at'        => Carbon::now(),
         ]);
 
         return back()->with('success', 'Successfully updated Area data');
