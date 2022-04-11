@@ -85,12 +85,13 @@ class BillGenerateController extends Controller
     public function insertMonthlyBill(Request $request)
     {
 
+
         if (!empty($request->year && $request->month && $request->check)) {
 
             foreach ($request->check as $key => $customers_id) {
 
-                $bills          = Bill::where('year', $request->year)->where('month', $request->month)->where('customer_id', $request->check)->exists();
-
+                $bills          = Bill::where('year', $request->year)->where('month', $request->month)->where('customer_id', $customers_id)->exists();
+                // dd($bills);
                 if ($bills) {
                     # code...
                 } else {
@@ -116,18 +117,19 @@ class BillGenerateController extends Controller
                         'due'                   => $package->amount,
                     ]);
 
-                    return back();
+
 
                 }
-                
-                
+
+
             }
+            return back();
 
         } else {
             return back();
         }
-        
 
-        
+
+
     }
 }

@@ -109,54 +109,56 @@
                         </thead>
                         <tbody>
                             @foreach ($customers as $customer)
-                                <tr>
-                                    <td>{{ $loop->index + 1 }}</td>
-                                    <td>
-                                        {{ $year }}
-                                        <input class="text-center" style="display:none" type="text" name="year"
-                                            value="{{ $year }}">
-                                    </td>
-                                    <td>
-                                        @if ($month == 1)
-                                            january
-                                        @elseif($month == 2)
-                                            february
-                                        @elseif($month == 3)
-                                            march
-                                        @elseif($month == 4)
-                                            aprill
-                                        @elseif($month == 5)
-                                            may
-                                        @elseif($month == 6)
-                                            june
-                                        @elseif($month == 7)
-                                            july
-                                        @elseif($month == 8)
-                                            august
-                                        @elseif($month == 9)
-                                            september
-                                        @elseif($month == 10)
-                                            october
-                                        @elseif($month == 11)
-                                            november
-                                        @elseif($month == 12)
-                                            december
-                                        @endif
-                                        <input class="text-center" style="display:none" type="text" name="month"
-                                            value="{{ $month }}">
-                                    </td>
-                                    <td>{{ App\Models\Area::find($area_id)->name }}</td>
-                                    <td>
-                                        {{ $customer->customer_id }}
-                                    </td>
-                                    <td>
-                                        {{ $customer->name }}
-                                    </td>
-                                    <td>
-                                        {{ $customer->phone }}
-                                    </td>
-                                    <td><input type="checkbox" name="check[]" value="{{ $customer->id }}"></td>
-                                </tr>
+                                @if (duplicate_bill_check($customer->id, $year, $month, $area_id))
+                                    <tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>
+                                            {{ $year }}
+                                            <input class="text-center" style="display:none" type="text" name="year"
+                                                value="{{ $year }}">
+                                        </td>
+                                        <td>
+                                            @if ($month == 1)
+                                                january
+                                            @elseif($month == 2)
+                                                february
+                                            @elseif($month == 3)
+                                                march
+                                            @elseif($month == 4)
+                                                aprill
+                                            @elseif($month == 5)
+                                                may
+                                            @elseif($month == 6)
+                                                june
+                                            @elseif($month == 7)
+                                                july
+                                            @elseif($month == 8)
+                                                august
+                                            @elseif($month == 9)
+                                                september
+                                            @elseif($month == 10)
+                                                october
+                                            @elseif($month == 11)
+                                                november
+                                            @elseif($month == 12)
+                                                december
+                                            @endif
+                                            <input class="text-center" style="display:none" type="text" name="month"
+                                                value="{{ $month }}">
+                                        </td>
+                                        <td>{{ App\Models\Area::find($area_id)->name }}</td>
+                                        <td>
+                                            {{ $customer->customer_id }}
+                                        </td>
+                                        <td>
+                                            {{ $customer->name }}
+                                        </td>
+                                        <td>
+                                            {{ $customer->phone }}
+                                        </td>
+                                        <td><input type="checkbox" name="check[]" value="{{ $customer->id }}"></td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
