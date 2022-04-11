@@ -79,6 +79,27 @@
                 </div>
 
 
+                <div style="flex-direction: row" class="form-field col-lg-12">
+                    <label class="label my-auto" for="preimg">Previous
+                        Profile Picture</label>
+                    <img style="border-radius: 5px; margin-left: 10rem" width="250px"
+                        src="{{ asset('backend/assets/images/profile-pic' . '/' . auth()->user()->image) }}" alt=""
+                        id="preimg">
+                </div>
+
+
+                <div class="form-field col-lg-6">
+                    <label class="label" for="image">Choose New Profile Picture</label>
+                    <input name="image" id="image" class="input-text js-input" type="file">
+
+
+                    @error('image')
+                        <span class="text-danger text-left">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+
                 <div class="form-field col-lg-12">
                     <button class="submit-btn" type="submit">Update</button>
                 </div>
