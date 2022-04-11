@@ -1,8 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('main-content')
-
-
     <section class="ftco-section">
         <div class="container-fluid">
             <div class="row">
@@ -16,6 +14,10 @@
                         </div>
                     @endif
 
+                    <div class="text-right mb-3">
+                        <a class="btn btn-info" href="{{ route('area.create') }}">+ Create Area</a>
+                    </div>
+
                     <div class="table-wrap">
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
@@ -28,29 +30,32 @@
                             <tbody>
 
                                 @foreach ($areas as $area)
-
                                     <tr class="alert" role="alert">
                                         <td>{{ $area->name }}</td>
 
                                         <td>
                                             @if ($area->status == 1)
-                                                <a href="{{route('area.status', $area->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>
+                                                <a href="{{ route('area.status', $area->id) }}"><i style="font-size: 35px"
+                                                        class="font-icon fa fa-toggle-on"></i></a>
                                             @elseif ($area->status == 0)
-                                                <a href="{{route('area.status', $area->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-off"></i></a>
+                                                <a href="{{ route('area.status', $area->id) }}"><i style="font-size: 35px"
+                                                        class="font-icon fa fa-toggle-off"></i></a>
                                             @endif
                                         </td>
 
                                         <td>
-                                            <a href="{{route('area.edit', $area->id)}}" class="mr-3"><i class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
+                                            <a href="{{ route('area.edit', $area->id) }}" class="mr-3"><i
+                                                    class="font-icon fa fa-pencil-square-o" style="font-size: 30px"></i></a>
 
-                                            <form class="d-inline" action="{{route('area.destroy', $area->id)}}" method="POST">
+                                            <form class="d-inline" action="{{ route('area.destroy', $area->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="delete-btn"><i class="font-icon fa fa-trash-o" style="font-size: 30px;"></i></button>
+                                                <button class="delete-btn"><i class="font-icon fa fa-trash-o"
+                                                        style="font-size: 30px;"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-
                                 @endforeach
 
                             </tbody>
@@ -61,6 +66,4 @@
             </div>
         </div>
     </section>
-
-
 @endsection

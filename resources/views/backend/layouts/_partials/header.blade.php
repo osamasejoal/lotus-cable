@@ -278,7 +278,7 @@
                                 <a class="dropdown-item" href="{{ route('frontpage') }}"><span
                                         class="font-icon fa fa-anchor"></span>Front
                                     page</a>
-                                <a class="dropdown-item" href="#"><span
+                                <a class="dropdown-item" href="{{ route('profile.index') }}"><span
                                         class="font-icon glyphicon glyphicon-user"></span>Profile</a>
                                 <a class="dropdown-item" href="#"><span
                                         class="font-icon glyphicon glyphicon-cog"></span>Settings</a>

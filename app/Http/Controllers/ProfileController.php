@@ -21,7 +21,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        
+        return view('backend.profile.view');
     }
 
 

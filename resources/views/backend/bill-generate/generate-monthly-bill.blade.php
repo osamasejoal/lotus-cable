@@ -112,7 +112,8 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
-                                        <input class="text-center" style="border:none;width:60px" type="text" name="year"
+                                        {{ $year }}
+                                        <input class="text-center" style="display:none" type="text" name="year"
                                             value="{{ $year }}">
                                     </td>
                                     <td>

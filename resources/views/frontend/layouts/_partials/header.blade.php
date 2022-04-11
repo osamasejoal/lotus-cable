@@ -13,8 +13,8 @@
         rel="stylesheet">
 
     <!-- Favicon -->
-    {{-- <link rel="shortcut icon" href="{{asset('frontend/assets')}}/images/favicon.png" type="image/x-icon">
-<link rel="icon" href="{{asset('frontend/assets')}}/images/favicon.png" type="image/x-icon"> --}}
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/company' . '/' . $company_info->favicon) }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('backend/assets/images/company' . '/' . $company_info->favicon) }}" type="image/x-icon">
 
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,8 +69,7 @@
                     <div class="inner-container clearfix">
 
                         <div class="pull-left logo-box">
-                            <div class="h1 font-weight-bold" style="padding: 15px 0">Lotus</div>
-                            {{-- <div class="logo"><a href="index-2.html"><img src="{{asset('frontend/assets')}}/images/logo.png" alt="" title=""></a></div> --}}
+                            <div class="logo"><a href="index-2.html"><img width="150px" src="{{ asset('backend/assets/images/company' . '/' . $company_info->logo) }}" alt="" title=""></a></div>
                         </div>
                         <div class="nav-outer clearfix">
 
@@ -202,8 +201,11 @@
                 <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
 
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="index-2.html"><img
-                                src="{{ asset('frontend/assets') }}/images/logo.png" alt="" title=""></a></div>
+                    <div class="nav-logo">
+                        <a href="{{ route('frontpage') }}"><img width="100px"
+                                src="{{ asset('backend/assets/images/company' . '/' . $company_info->logo) }}"
+                                alt="" /></a>
+                    </div>
                     <div class="menu-outer">
                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                     </div>
@@ -229,7 +231,8 @@
                         <div class="sidebar-info-contents">
                             <div class="content-inner">
                                 <div class="logo">
-                                    <a href="{{route('frontpage')}}"><img src="{{ asset('backend/assets/images/company' . '/' . $company_info->logo) }}"
+                                    <a href="{{ route('frontpage') }}"><img width="150px"
+                                            src="{{ asset('backend/assets/images/company' . '/' . $company_info->logo) }}"
                                             alt="" /></a>
                                 </div>
                                 <div class="content-box">
@@ -241,7 +244,9 @@
                                 <div class="contact-info">
                                     <h5>Contact Info</h5>
                                     <ul class="list-style-one">
-                                        <li><span class="icon fa fa-location-arrow"></span>{{ $company_info->address }}</li>
+                                        <li><span
+                                                class="icon fa fa-location-arrow"></span>{{ $company_info->address }}
+                                        </li>
                                         <li><span class="icon fa fa-phone"></span>{{ $company_info->phone }}</li>
                                         <li><span class="icon fa fa-envelope"></span>{{ $company_info->email }}</li>
                                         <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday:
@@ -250,7 +255,8 @@
                                 </div>
                                 <!-- Social Box -->
                                 <ul class="social-box">
-                                    <li><a href="{{ $company_info->fb_page_link }}" class="fa fa-facebook-f"></a></li>
+                                    <li><a href="{{ $company_info->fb_page_link }}" class="fa fa-facebook-f"></a>
+                                    </li>
                                     <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
                                     <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
                                     <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
@@ -263,5 +269,3 @@
             </div>
         </div>
         <!-- END sidebar widget item -->
-
-

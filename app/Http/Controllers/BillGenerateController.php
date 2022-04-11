@@ -107,9 +107,9 @@ class BillGenerateController extends Controller
                     'bill_generate_date'    => Carbon::now()->toDateString(),
                 ]);
 
-                // Customer::find($customer)->update([
-                //     'due'                   => $package->amount,
-                // ]);
+                Customer::find($customers_id)->update([
+                    'due'                   => $package->amount,
+                ]);
 
             }
 

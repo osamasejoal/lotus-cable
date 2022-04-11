@@ -47,7 +47,7 @@
             <div class="auto-container">
                 <div class="widgets-section">
                     <div class="logo">
-                        <a href="index-2.html"><img src="{{ asset('frontend/assets') }}/images/footer-logo.png"
+                        <a href="index-2.html"><img width="150px" src="{{ asset('backend/assets/images/company' . '/' . $company_info->logo ) }}"
                                 alt="" /></a>
                     </div>
                     <ul class="contact-info-list">
@@ -72,7 +72,7 @@
 
                     <!-- Social Box -->
                     <ul class="social-box">
-                        <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
+                        <li><a href="{{ $company_info->fb_page_link }}" class="fa fa-facebook-f"></a></li>
                         <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
                         <li><a href="https://skype.com/" class="fa fa-skype"></a></li>
                         <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>

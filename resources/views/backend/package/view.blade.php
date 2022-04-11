@@ -14,6 +14,10 @@
                         </div>
                     @endif
 
+                    <div class="text-right mb-3">
+                        <a class="btn btn-info" href="{{ route('package.create') }}">+ Create Package</a>
+                    </div>
+
                     <div class="table-wrap">
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
