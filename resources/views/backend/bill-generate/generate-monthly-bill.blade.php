@@ -86,7 +86,7 @@
                 |--------------------------------------------------------------------------
                 -->
         @if ($year != null || $month != null || $area_id != null)
-            <form action="{{ route('insert.monthly.bill', $year, $month) }}" method="POST">
+            <form action="{{ route('insert.monthly.bill') }}" method="POST">
                 @csrf
 
                 <div class="generate-unpaid-bill text-right mb-3">
