@@ -11,7 +11,7 @@ class Staff extends Model
 
     protected $guarded = [];
 
-            
+
 
 
     /*
@@ -24,7 +24,7 @@ class Staff extends Model
         return $this->belongsTo(Area::class);
     }
 
-            
+
 
 
     /*

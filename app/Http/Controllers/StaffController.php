@@ -28,7 +28,7 @@ class StaffController extends Controller
     */
     public function index()
     {
-        $staffs     = User::where('type', '2')->get();
+        $staffs     = Staff::where('status', 1)->get();
         return view('backend.staff.view', compact('staffs'));
     }
 
@@ -63,7 +63,7 @@ class StaffController extends Controller
             Staff::find($staffs_id)->update([
                 'status'    => 1,
             ]);
-            
+
         }
 
         return back();
@@ -145,7 +145,7 @@ class StaffController extends Controller
             'created_at'        => Carbon::now(),
         ]);
 
-        
+
 
         // Mail::to($request->email)->send(new StaffMail($staff_password, $staff_n, $request->email));
 

@@ -20,11 +20,11 @@
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
-                                    <th>Area</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Area</th>
                                     <th>Gender</th>
                                     <th>Address</th>
                                     <th>Created By</th>
@@ -36,7 +36,6 @@
                             <tbody>
 
                                 @foreach ($staffs as $staff)
-                                    {{-- <td>{{ $staff->area->name }}</td> --}}
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"
@@ -46,6 +45,7 @@
                                         <td>{{ $staff->name }}</td>
                                         <td>{{ $staff->email }}</td>
                                         <td>{{ $staff->phone }}</td>
+                                        <td>{{ $staff->area->name }}</td>
                                         <td>
                                             @if ($staff->gender == 1)
                                                 Male
@@ -57,12 +57,10 @@
                                         </td>
                                         <td>{{ $staff->address}}</td>
 
-                                        <td>{{ App\Models\User::find($staff->created_by)->name }}</td>
-
                                         <td>
-                                            @if (App\Models\User::find($staff->updated_by) != null)
-                                             {{ App\Models\User::find($staff->updated_by)->name }}
-                                            @endif
+                                            rrrrrrrrrrrrrr
+                                        <td>
+                                            dddddddddddddd
                                         </td>
 
                                         <td>

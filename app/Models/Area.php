@@ -11,7 +11,7 @@ class Area extends Model
 
     protected $guarded = [];
 
-            
+
 
 
     /*
@@ -24,7 +24,7 @@ class Area extends Model
         return $this->hasOne(Staff::class);
     }
 
-            
+
 
 
     /*
