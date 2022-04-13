@@ -85,6 +85,11 @@ class BillGenerateController extends Controller
     public function insertMonthlyBill(Request $request)
     {
 
+        foreach ($request->check as $key => $chk) {
+        echo $chk;   
+        }
+        die();
+
 
         if (!empty($request->year && $request->month && $request->check)) {
 

@@ -67,6 +67,7 @@ Route::resource('customer', CustomerController::class);
 Route::get('/update/customer/status/{id}', [CustomerController::class, 'updateStatus'])->name('customer.status');
 Route::get('/active/customer', [CustomerController::class, 'activeCustomer'])->name('active.customer');
 Route::get('/deactive/customer', [CustomerController::class, 'deactiveCustomer'])->name('deactive.customer');
+Route::get('/customer/transaction/{id}', [CustomerController::class, 'customerTransaction'])->name('customer.transaction');
 
 
 

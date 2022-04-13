@@ -22,17 +22,13 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Area</th>
-                                    <th>Package</th>
                                     <th>Customer ID</th>
-                                    <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Gender</th>
                                     <th>Address</th>
-                                    <th>NID</th>
-                                    <th>Register Date</th>
-                                    <th>Created By</th>
-                                    <th>Updated By</th>
+                                    {{-- <th>Area</th>
+                                    <th>Package</th> --}}
+                                    <th>Due</th>
+                                    <th>Transaction</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -48,31 +44,17 @@
                                                 alt="img not found" width="50px">
                                         </td>
                                         <td>{{ $customer->name }}</td>
-                                        <td>{{ App\Models\Area::find($customer->customer->area_id)->name }}</td>
-                                        <td>{{ App\Models\Package::find($customer->customer->package_id)->name }}</td>
                                         <td>{{ $customer->customer_id }}</td>
-                                        <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
-                                        <td>
-                                            @if ($customer->gender == 1)
-                                                Male
-                                            @elseif ($customer->gender == 2)
-                                                Female
-                                            @elseif ($customer->gender == 3)
-                                                Others
-                                            @endif
-                                        </td>
                                         <td>{{ $customer->address}}</td>
-                                        <td>{{$customer->customer->nid}}</td>
-                                        <td>{{$customer->customer->register_date}}</td>
-                                        <td>{{ App\Models\User::find($customer->created_by)->name }}</td>
 
+                                        {{-- <td>{{ App\Models\Area::find($customer->customer->area_id)->name }}</td> --}}
+                                        {{-- <td>{{ App\Models\Package::find($customer->customer->package_id)->name }}</td> --}}
+                                        
+                                        <td>{{ $customer->due}}</td>
                                         <td>
-                                            @if (App\Models\User::find($customer->updated_by) != null)
-                                             {{ App\Models\User::find($customer->updated_by)->name }}
-                                            @endif
+                                            <a href="{{ route('customer.transaction', $customer->customer_id) }}" class="btn btn-primary">Transaction</a>
                                         </td>
-
                                         <td>
                                             @if ($customer->status == 1)
                                                 <a href="{{route('customer.status', $customer->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>

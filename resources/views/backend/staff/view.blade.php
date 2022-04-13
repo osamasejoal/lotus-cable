@@ -20,7 +20,7 @@
                         <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
-                                    <th>Area</th>
+                                    {{-- <th>Area</th> --}}
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Email</th>

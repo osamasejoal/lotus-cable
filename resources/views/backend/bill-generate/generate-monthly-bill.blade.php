@@ -104,12 +104,17 @@
                                 <th>Customer Id</th>
                                 <th>Customer Name</th>
                                 <th>Customer Phone</th>
-                                <th>CB</th>
+                                <th>
+                                    <input type="checkbox" name="check[]" 
+                                    value=" @foreach ($customers as $cst)
+                                                {{ $cst->id }}
+                                            @endforeach ">
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($customers as $customer)
-                                @if (duplicate_bill_check($customer->id, $year, $month, $area_id))
+                                {{-- @if (duplicate_bill_check($customer->id, $year, $month, $area_id)) --}}
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>
@@ -158,7 +163,7 @@
                                         </td>
                                         <td><input type="checkbox" name="check[]" value="{{ $customer->id }}"></td>
                                     </tr>
-                                @endif
+                                {{-- @endif --}}
                             @endforeach
                         </tbody>
                     </table>

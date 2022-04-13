@@ -13,6 +13,7 @@ use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerMail;
+use App\Models\Bill;
 
 class CustomerController extends Controller
 {
@@ -319,5 +320,21 @@ class CustomerController extends Controller
     public function deactiveCustomer(){
         $customers = User::where('type', '3')->where('status', '0')->get();
         return view('backend.customer.deactive-customer', compact('customers'));
+    }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                        CUSTOMER TRANSACTION METHOD
+    |--------------------------------------------------------------------------
+    */
+    public function customerTransaction($id){
+
+        $customers  = Customer::find($id);
+        $bills      = Bill::where('customer_id', $id)->get();
+
+            return view('backend.customer.customer-transaction', compact('customers', 'bills'));
     }
 }
