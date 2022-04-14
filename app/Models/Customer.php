@@ -19,7 +19,7 @@ class Customer extends Model
 |                          RELATION WITH AREA TABLE
     |--------------------------------------------------------------------------
     */
-    public function areas()
+    public function area()
     {
         return $this->belongsTo(Area::class);
     }
@@ -48,5 +48,18 @@ class Customer extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                         RELATION WITH BILL TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
     }
 }

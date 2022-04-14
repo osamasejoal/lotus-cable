@@ -151,7 +151,9 @@
                                             <input class="text-center" style="display:none" type="text" name="month"
                                                 value="{{ $month }}">
                                         </td>
-                                        <td>{{ App\Models\Area::find($area_id)->name }}</td>
+                                        <td>
+                                            {{ $customer->area->name }}
+                                        </td>
                                         <td>
                                             {{ $customer->customer_id }}
                                         </td>

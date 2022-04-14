@@ -16,11 +16,24 @@ class Package extends Model
 
     /*
     |--------------------------------------------------------------------------
-|                          RELATION WITH CUSTOMER TABLE
+    |                         RELATION WITH CUSTOMER TABLE
     |--------------------------------------------------------------------------
     */
     public function customers()
     {
         return $this->hasOne(Customer::class);
+    }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                         RELATION WITH BILL TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
     }
 }

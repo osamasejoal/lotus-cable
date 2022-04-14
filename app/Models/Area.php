@@ -11,7 +11,7 @@ class Area extends Model
 
     protected $guarded = [];
 
-            
+
 
 
     /*
@@ -24,7 +24,7 @@ class Area extends Model
         return $this->hasOne(Staff::class);
     }
 
-            
+
 
 
     /*
@@ -35,5 +35,18 @@ class Area extends Model
     public function customer()
     {
         return $this->hasOne(Customer::class);
+    }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    |                         RELATION WITH BILL TABLE
+    |--------------------------------------------------------------------------
+    */
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
     }
 }

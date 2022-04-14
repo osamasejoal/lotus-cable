@@ -16,17 +16,17 @@
                         </div>
                     @endif
 
-                    <div class="table-wrap">
-                        <table style="min-width: 2000px !important" class="table table-bordered table-responsive-xl text-center">
+                    <div class="table-wrap mb-5">
+                        <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Customer ID</th>
+                                    <th>C. ID</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    {{-- <th>Area</th>
-                                    <th>Package</th> --}}
+                                    <th>Area</th>
+                                    <th>Package</th>
                                     <th>Due</th>
                                     <th>Transaction</th>
                                     <th>Status</th>
@@ -40,17 +40,15 @@
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"
-                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $customer->image) }}"
+                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $customer->user->image) }}"
                                                 alt="img not found" width="50px">
                                         </td>
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->customer_id }}</td>
                                         <td>{{ $customer->phone }}</td>
                                         <td>{{ $customer->address}}</td>
-
-                                        {{-- <td>{{ App\Models\Area::find($customer->customer->area_id)->name }}</td> --}}
-                                        {{-- <td>{{ App\Models\Package::find($customer->customer->package_id)->name }}</td> --}}
-                                        
+                                        <td>{{ $customer->area->name}}</td>
+                                        <td>{{ $customer->package->name}}</td>
                                         <td>{{ $customer->due}}</td>
                                         <td>
                                             <a href="{{ route('customer.transaction', $customer->customer_id) }}" class="btn btn-primary">Transaction</a>

@@ -23,9 +23,9 @@
                                     {{-- <th>Area</th> --}}
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Area</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Gender</th>
                                     <th>Address</th>
                                     <th>Created By</th>
                                     <th>Updated By</th>
@@ -36,7 +36,6 @@
                             <tbody>
 
                                 @foreach ($staffs as $staff)
-                                    {{-- <td>{{ $staff->area->name }}</td> --}}
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"
@@ -44,25 +43,15 @@
                                                 alt="img not found" width="50px">
                                         </td>
                                         <td>{{ $staff->name }}</td>
+                                        <td>{{ $staff->area->name }}</td>
                                         <td>{{ $staff->email }}</td>
                                         <td>{{ $staff->phone }}</td>
-                                        <td>
-                                            @if ($staff->gender == 1)
-                                                Male
-                                            @elseif ($staff->gender == 2)
-                                                Female
-                                            @elseif ($staff->gender == 3)
-                                                Others
-                                            @endif
-                                        </td>
                                         <td>{{ $staff->address}}</td>
 
-                                        <td>{{ App\Models\User::find($staff->created_by)->name }}</td>
-
                                         <td>
-                                            @if (App\Models\User::find($staff->updated_by) != null)
-                                             {{ App\Models\User::find($staff->updated_by)->name }}
-                                            @endif
+                                            {{ $staff->user->created_by }}
+                                        <td>
+                                            {{ $staff->user->updated_by }}
                                         </td>
 
                                         <td>

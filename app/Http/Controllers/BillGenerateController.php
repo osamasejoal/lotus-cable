@@ -85,46 +85,60 @@ class BillGenerateController extends Controller
     public function insertMonthlyBill(Request $request)
     {
 
-        foreach ($request->check as $key => $chk) {
-        echo $chk;   
-        }
-        die();
-
-
         if (!empty($request->year && $request->month && $request->check)) {
 
             foreach ($request->check as $key => $customers_id) {
 
                 $bills          = Bill::where('year', $request->year)->where('month', $request->month)->where('customer_id', $customers_id)->exists();
                 // dd($bills);
-                if ($bills) {
-                    # code...
-                } else {
-                    $customer   = Customer::find($customers_id);
-                    $staff      = Staff::where('area_id', $customer->area_id)->first();
-                    $package    = Package::find($customer->package_id);
+                // if ($bills) {
+                //     # code...
+                // } else {
+                //     $customer   = Customer::find($customers_id);
+                //     $staff      = Staff::where('area_id', $customer->area_id)->first();
+                //     $package    = Package::find($customer->package_id);
 
-                    Bill::insert([
-                        'customer_id'           => $customers_id,
-                        'staff_id'              => $staff->id,
-                        'area_id'               => $customer->area_id,
-                        'package_id'            => $package->id,
-                        'transaction_type_id'   => 1,
-                        'year'                  => $request->year,
-                        'month'                 => $request->month,
-                        'month_wise_amount'     => $package->amount,
-                        'discount'              => 0,
-                        'paid_amount'           => 0,
-                        'bill_generate_date'    => Carbon::now()->toDateString(),
-                    ]);
+                //     Bill::insert([
+                //         'customer_id'           => $customers_id,
+                //         'staff_id'              => $staff->id,
+                //         'area_id'               => $customer->area_id,
+                //         'package_id'            => $package->id,
+                //         'transaction_type_id'   => 1,
+                //         'year'                  => $request->year,
+                //         'month'                 => $request->month,
+                //         'month_wise_amount'     => $package->amount,
+                //         'discount'              => 0,
+                //         'paid_amount'           => 0,
+                //         'bill_generate_date'    => Carbon::now()->toDateString(),
+                //     ]);
 
-                    Customer::find($customers_id)->update([
-                        'due'                   => $package->amount,
-                    ]);
+                //     Customer::find($customers_id)->update([
+                //         'due'                   => $package->amount,
+                //     ]);
+                // }
 
 
+                $customer   = Customer::find($customers_id);
+                $staff      = Staff::where('area_id', $customer->area_id)->first();
+                $package    = Package::find($customer->package_id);
 
-                }
+                Bill::insert([
+                    'customer_id'           => $customers_id,
+                    'staff_id'              => $staff->id,
+                    'area_id'               => $customer->area_id,
+                    'package_id'            => $package->id,
+                    'transaction_type_id'   => 1,
+                    'year'                  => $request->year,
+                    'month'                 => $request->month,
+                    'month_wise_amount'     => $package->amount,
+                    'discount'              => 0,
+                    'paid_amount'           => 0,
+                    'bill_generate_date'    => Carbon::now()->toDateString(),
+                ]);
+
+                Customer::find($customers_id)->update([
+                    'due'                   => $package->amount,
+                ]);
 
 
             }

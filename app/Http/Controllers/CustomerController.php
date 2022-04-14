@@ -28,7 +28,7 @@ class CustomerController extends Controller
     */
     public function index()
     {
-        $customers = User::where('type', '3')->get();
+        $customers = Customer::all();
         return view('backend.customer.view', compact('customers'));
     }
 
@@ -305,7 +305,7 @@ class CustomerController extends Controller
     |--------------------------------------------------------------------------
     */
     public function activeCustomer(){
-        $customers = User::where('type', '3')->where('status', '1')->get();
+        $customers = Customer::where('status', '1')->get();
         return view('backend.customer.active-customer', compact('customers'));
     }
 
@@ -318,7 +318,7 @@ class CustomerController extends Controller
     |--------------------------------------------------------------------------
     */
     public function deactiveCustomer(){
-        $customers = User::where('type', '3')->where('status', '0')->get();
+        $customers = Customer::where('status', '0')->get();
         return view('backend.customer.deactive-customer', compact('customers'));
     }
 
@@ -332,9 +332,9 @@ class CustomerController extends Controller
     */
     public function customerTransaction($id){
 
-        $customers  = Customer::find($id);
-        $bills      = Bill::where('customer_id', $id)->get();
+        $bills          = Bill::where('customer_id', $id)->get();
+        $total_paid     = Bill::where('customer_id', $id)->sum('paid_amount');
 
-            return view('backend.customer.customer-transaction', compact('customers', 'bills'));
+        return view('backend.customer.customer-transaction', compact('bills', 'total_paid'));
     }
 }

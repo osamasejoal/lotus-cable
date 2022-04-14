@@ -16,23 +16,19 @@
                         </div>
                     @endif
 
-                    <div class="table-wrap">
-                        <table style="min-width: 2000px !important" class="table table-bordered table-responsive-xl text-center">
+                    <div class="table-wrap mb-5">
+                        <table class="table table-bordered table-responsive-xl text-center">
                             <thead>
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>C. ID</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Area</th>
                                     <th>Package</th>
-                                    <th>Customer ID</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Gender</th>
-                                    <th>Address</th>
-                                    <th>NID</th>
-                                    <th>Register Date</th>
-                                    <th>Created By</th>
-                                    <th>Updated By</th>
+                                    <th>Due</th>
+                                    <th>Transaction</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -44,35 +40,19 @@
                                     <tr class="alert" role="alert">
                                         <td>
                                             <img style="border-radius: 5px"
-                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $customer->image) }}"
+                                                src="{{ asset('backend/assets/images/profile-pic' . '/' . $customer->user->image) }}"
                                                 alt="img not found" width="50px">
                                         </td>
                                         <td>{{ $customer->name }}</td>
-                                        <td>{{ App\Models\Area::find($customer->customer->area_id)->name }}</td>
-                                        <td>{{ App\Models\Package::find($customer->customer->package_id)->name }}</td>
                                         <td>{{ $customer->customer_id }}</td>
-                                        <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
-                                        <td>
-                                            @if ($customer->gender == 1)
-                                                Male
-                                            @elseif ($customer->gender == 2)
-                                                Female
-                                            @elseif ($customer->gender == 3)
-                                                Others
-                                            @endif
-                                        </td>
                                         <td>{{ $customer->address}}</td>
-                                        <td>{{$customer->customer->nid}}</td>
-                                        <td>{{$customer->customer->register_date}}</td>
-                                        <td>{{ App\Models\User::find($customer->created_by)->name }}</td>
-
+                                        <td>{{ $customer->area->name}}</td>
+                                        <td>{{ $customer->package->name}}</td>
+                                        <td>{{ $customer->due}}</td>
                                         <td>
-                                            @if (App\Models\User::find($customer->updated_by) != null)
-                                             {{ App\Models\User::find($customer->updated_by)->name }}
-                                            @endif
+                                            <a href="{{ route('customer.transaction', $customer->customer_id) }}" class="btn btn-primary">Transaction</a>
                                         </td>
-
                                         <td>
                                             @if ($customer->status == 1)
                                                 <a href="{{route('customer.status', $customer->id)}}"><i style="font-size: 35px" class="font-icon fa fa-toggle-on"></i></a>
