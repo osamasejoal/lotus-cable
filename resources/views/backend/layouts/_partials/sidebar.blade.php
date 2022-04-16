@@ -71,12 +71,18 @@
                         <span class="lbl">Customer</span>
                     </span>
                     <ul>
+
+                        <!-- All Customers -->
                         <li class="{{ request()->routeIs('customer.index') ? 'active' : '' }}">
                             <a href="{{ route('customer.index') }}"><span class="lbl">All Customer</span></a>
                         </li>
+
+                        <!-- Active Customers -->
                         <li class="{{ request()->routeIs('active.customer') ? 'active' : '' }}">
                             <a href="{{ route('active.customer') }}"><span class="lbl">Active Customer</span></a>
                         </li>
+
+                        <!-- Deactive Customers -->
                         <li class="{{ request()->routeIs('deactive.customer') ? 'active' : '' }}">
                             <a href="{{ route('deactive.customer') }}"><span class="lbl">Deactive Customer</span></a>
                         </li>
@@ -96,9 +102,13 @@
                 <span class="lbl">Bill Generate</span>
             </span>
             <ul>
+
+                <!-- Add New Bill -->
                 <li class="{{ request()->routeIs('area.create') ? 'active' : '' }}">
                     <a href="{{ route('area.create') }}"><span class="lbl">Add New Bill</span></a>
                 </li>
+
+                <!-- Generate Monthly Bill -->
                 <li class="{{ request()->routeIs('monthly.bill.generate') ? 'active' : '' }}">
                     <a href="{{ route('monthly.bill.generate') }}"><span class="lbl">Generate Monthly
                             Bill</span></a>
@@ -108,26 +118,41 @@
 
 
         <!-- Bill Payment -->
-        <li class="purple with-sub">
+        <li class="purple with-sub {{ request()->routeIs('monthly.payment') ? 'opened' : '' }}">
             <span>
                 <i class="font-icon fa fa-credit-card"></i>
                 <span class="lbl">Bill Payment</span>
             </span>
             <ul>
-                <li><a href="#"><span class="lbl">Monthly Payment</span></a></li>
+
+                <!-- Monthly Payment -->
+                <li class="{{ request()->routeIs('monthly.payment') ? 'active' : '' }}">
+                    <a href="{{ route('monthly.payment') }}"><span class="lbl">Monthly Payment</span></a>
+                </li>
+
             </ul>
         </li>
 
 
         <!-- Bill Transaction -->
-        <li class="purple with-sub">
+        <li class="purple with-sub 
+        {{ request()->routeIs('paid.transaction') ? 'opened' : '' }}
+        {{ request()->routeIs('due.transaction') ? 'opened' : '' }}">
             <span>
                 <i class="font-icon fa fa-university"></i>
                 <span class="lbl">Bill Transaction</span>
             </span>
             <ul>
-                <li><a href="#"><span class="lbl">Paid Transaction</span></a></li>
-                <li><a href="#"><span class="lbl">Due Transaction</span></a></li>
+                
+                <!-- Paid Transaction -->
+                <li class="{{ request()->routeIs('paid.transaction') ? 'active' : '' }}">
+                    <a href="{{ route('paid.transaction') }}"><span class="lbl">Paid Transaction</span></a>
+                </li>
+
+                <!-- Due Transaction -->
+                <li class="{{ request()->routeIs('due.transaction') ? 'active' : '' }}">
+                    <a href="{{ route('due.transaction') }}"><span class="lbl">Due Transaction</span></a>
+                </li>
             </ul>
         </li>
 

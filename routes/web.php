@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{HomeController, FrontendController, AdminController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController, BillController, BillGenerateController};
+use App\Http\Controllers\{HomeController, FrontendController, AdminController, StaffController, CustomerController, AreaController, CompanyController, PackageController, ProfileController, TransactionOptionController, TransactionTypeController, BillController, BillGenerateController, BillTransactionController, BillPaymentController};
 
 
 Auth::routes();
@@ -137,4 +137,28 @@ Route::resource('bills', BillController::class);
 Route::get('/generate/monthly/bill', [BillGenerateController::class, 'gMonthlyBill'])->name('monthly.bill.generate');
 Route::get('/search/monthly/bill', [BillGenerateController::class, 'searchForBill'])->name('search.monthly.bill');
 Route::post('/insert/monthly/bill', [BillGenerateController::class, 'insertMonthlyBill'])->name('insert.monthly.bill');
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          BILL TRANSACTION CONTROLLER
+|--------------------------------------------------------------------------
+*/
+Route::get('/paid/transaction', [BillTransactionController::class, 'paidTransaction'])->name('paid.transaction');
+Route::get('/search/paid/transaction', [BillTransactionController::class, 'searchForPaidT'])->name('search.paid.transaction');
+
+Route::get('/due/transaction', [BillTransactionController::class, 'dueTransaction'])->name('due.transaction');
+Route::get('/search/due/transaction', [BillTransactionController::class, 'searchForDueT'])->name('search.due.transaction');
+Route::get('/delete/due/transaction/{id}', [BillTransactionController::class, 'deleteDueT'])->name('delete.due.transaction');
+
+
+
+/*
+|--------------------------------------------------------------------------
+|                          BILL PAYMENT CONTROLLER
+|--------------------------------------------------------------------------
+*/
+Route::get('/monthly/payment', [BillPaymentController::class, 'monthlyPayment'])->name('monthly.payment');
+Route::get('/search/monthly/payment', [BillPaymentController::class, 'searchMonthlyP'])->name('search.monthly.payment');
 
