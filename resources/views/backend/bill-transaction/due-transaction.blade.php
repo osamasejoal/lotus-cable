@@ -11,7 +11,7 @@
                 |                           SEARCH BAR
                 |--------------------------------------------------------------------------
                 -->
-        <form action="{{ route('search.paid.transaction') }}" method="get">
+        <form action="{{ route('search.due.transaction') }}" method="get">
             @csrf
 
             @if (session('error'))

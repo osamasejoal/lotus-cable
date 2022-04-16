@@ -137,7 +137,9 @@
         <!-- Bill Transaction -->
         <li class="purple with-sub 
         {{ request()->routeIs('paid.transaction') ? 'opened' : '' }}
-        {{ request()->routeIs('due.transaction') ? 'opened' : '' }}">
+        {{ request()->routeIs('search.paid.transaction') ? 'opened' : '' }}
+        {{ request()->routeIs('due.transaction') ? 'opened' : '' }}
+        {{ request()->routeIs('search.due.transaction') ? 'opened' : '' }}">
             <span>
                 <i class="font-icon fa fa-university"></i>
                 <span class="lbl">Bill Transaction</span>
@@ -145,12 +147,14 @@
             <ul>
                 
                 <!-- Paid Transaction -->
-                <li class="{{ request()->routeIs('paid.transaction') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('paid.transaction') ? 'active' : '' }}
+                    {{ request()->routeIs('search.paid.transaction') ? 'active' : '' }}">
                     <a href="{{ route('paid.transaction') }}"><span class="lbl">Paid Transaction</span></a>
                 </li>
 
                 <!-- Due Transaction -->
-                <li class="{{ request()->routeIs('due.transaction') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('due.transaction') ? 'active' : '' }}
+                    {{ request()->routeIs('search.due.transaction') ? 'active' : '' }}">
                     <a href="{{ route('due.transaction') }}"><span class="lbl">Due Transaction</span></a>
                 </li>
             </ul>
