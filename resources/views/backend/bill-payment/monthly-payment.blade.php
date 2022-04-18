@@ -150,6 +150,12 @@
                                         <td>
                                             {{ $bill->customer->phone }}
                                         </td>
+                                        <td>
+                                            {{ $bill->customer->phone }}
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary">Paid</a>
+                                        </td>
                                     </tr>
                             @endforeach
                         </tbody>

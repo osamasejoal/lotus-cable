@@ -20,7 +20,7 @@
                     <select name="year" id="year"
                         style="border:none;background:transparent;border-bottom:2px solid;width:200px;margin:4px 0;">
                         <option value="">-- Year --</option>
-                        <option value="2022" {{ $year == 2022 ? 'selected' : '' }}>2022</option>
+                        <option value="2022`" {{ $year == 2022 ? 'selected' : '' }}>2022</option>
                         <option value="2023" {{ $year == 2023 ? 'selected' : '' }}>2023</option>
                         <option value="2024" {{ $year == 2024 ? 'selected' : '' }}>2024</option>
                     </select>
